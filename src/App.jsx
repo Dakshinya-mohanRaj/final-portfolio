@@ -503,18 +503,32 @@ export default function App() {
           align-self: flex-start;
           font-weight: 600;
         }
-        .view-btn {
-          align-self: flex-start;
-          background: linear-gradient(135deg, #ff8d75, #ffb19c);
-          color: white;
-          padding: 12px 28px;
-          border-radius: 30px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 14px;
-          transition: all 0.3s ease;
-        }
-        .view-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35); }
+       .view-btn {
+         align-self: flex-start;
+        background: linear-gradient(135deg, #ff8d75, #ffb19c);
+         color: white;
+        padding: 12px 28px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: all 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+       }
+
+      .view-btn:hover {
+       transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
+      }
+
+      .view-btn:focus {
+      outline: none;
+     }
+
+     /* ⭐ FIX for the blue color after visiting */
+     .view-btn:visited {
+     color: white !important;
+     }   
         .icon-orbit { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
         .icon-orb {
           width: 60px; height: 60px;
