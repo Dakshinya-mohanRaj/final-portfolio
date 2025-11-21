@@ -345,11 +345,12 @@ export default function App() {
         .hero-content h1 { font-size: clamp(60px, 7vw, 86px); color: var(--brown); }
         .hero-content span {
   font-family: "Sacramento", cursive;
-  font-size: clamp(70px, 13vw, 100px);
+  font-size: clamp(60px, 13vw, 90px);
   color: rgb(225, 106, 82);
   display: inline-block;
   position: relative;
   overflow: hidden;
+  padding-bottom:12px;
 }
 
 .hero-content span::after {
@@ -361,7 +362,7 @@ export default function App() {
   width: 100%;
   background-color: var(--peach); /* your BG color */
   transform: translateX(0);
-  animation: reveal 3s ease forwards;
+  animation: reveal 5s ease forwards;
 }
 
 @keyframes reveal {
@@ -374,7 +375,7 @@ export default function App() {
 }
 
         .hero-content p {
-          max-width: 800px;
+          max-width: 900px;
           font-size: clamp(18px, 4vw, 22px);
           color: #6b5555;
           margin-top: 30px;
