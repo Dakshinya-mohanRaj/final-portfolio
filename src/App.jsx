@@ -343,6 +343,9 @@ export default function App() {
           text-align: left;
         }
         .hero-content h1 { font-size: clamp(60px, 7vw, 86px); color: var(--brown); }
+         .hero-content h1:first-child {
+         margin-bottom: 25px; /* adjust this spacing */
+}
         .hero-content span {
   font-family: "Sacramento", cursive;
   font-size: clamp(60px, 13vw, 90px);
