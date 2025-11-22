@@ -44,7 +44,7 @@ export default function App() {
       <div className="blob b3" aria-hidden="true"></div>
 
       {/* Navbar */}
-      <nav className="navbar" role="navigation" aria-label="Main navigation">
+      <nav className="navbar" role="navigation podpor: true" aria-label="Main navigation">
         <div className="logo">Dakshinya</div>
 
         {/* Hamburger - THREE LINES (replaces dots) */}
@@ -160,19 +160,19 @@ export default function App() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="section">
-        <div className="contact-minimal">
-          <h2>Let's Connect</h2>
-          <p>Click any orb to reach out</p>
-          <div className="icon-orbit">
-            <a href="mailto:dakshee02@gmail.com" className="icon-orb" aria-label="Email">
+      <section id="contact" className="contact-section">
+        <div className="contact-card">
+          <h2 className="contact-title">Let's Connect</h2>
+          <p className="contact-sub">I'm always open to collaboration & opportunities</p>
+          <div className="contact-icons">
+            <a href="mailto:dakshee02@gmail.com" className="contact-orb" aria-label="Email">
               <i className="fas fa-envelope"></i>
             </a>
             <a
               href="https://github.com/Dakshinya-mohanRaj"
               target="_blank"
               rel="noreferrer"
-              className="icon-orb"
+              className="contact-orb"
               aria-label="GitHub"
             >
               <i className="fab fa-github"></i>
@@ -181,7 +181,7 @@ export default function App() {
               href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/"
               target="_blank"
               rel="noreferrer"
-              className="icon-orb"
+              className="contact-orb"
               aria-label="LinkedIn"
             >
               <i className="fab fa-linkedin"></i>
@@ -194,6 +194,7 @@ export default function App() {
       <div className="bg-name" aria-hidden="true">
         DAKSHINYA <br /> MOHAN RAJ
       </div>
+
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
 
       {/* All Styles - Only changed the hamburger part */}
@@ -205,6 +206,7 @@ export default function App() {
           --brown: #4d3c3c;
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        *:focus { outline: none; }
         html, body, #root {
           overflow-x: hidden;
           background: var(--peach);
@@ -213,7 +215,6 @@ export default function App() {
           width: 100%;
           min-height: 100vh;
         }
-
         /* Blobs */
         .blob { position: fixed; border-radius: 50%; filter: blur(70px); opacity: 0.6; z-index: -1; animation: float 12s infinite ease-in-out; }
         .b1 { width: 500px; height: 500px; background: var(--peach); top: -10%; left: -10%; }
@@ -240,7 +241,6 @@ export default function App() {
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-
         /* Desktop nav links */
         .nav-links {
           display: flex;
@@ -291,7 +291,6 @@ export default function App() {
         /* Mobile styles */
         @media (max-width: 768px) {
           .hamburger { display: flex; }
-
           .nav-links {
             position: absolute;
             top: 64px;
@@ -343,40 +342,32 @@ export default function App() {
         }
         .hero-content h1 { font-size: clamp(60px, 7vw, 86px); color: var(--brown); }
         .hero-content h1:first-child {
-  margin-bottom: 25px; /* adjust this spacing */
-}
-
+          margin-bottom: 25px;
+        }
         .hero-content span {
-  font-family: "Sacramento", cursive;
-  font-size: clamp(60px, 13vw, 90px);
-  color: rgb(225, 106, 82);
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  padding-bottom:12px;
-}
-
-.hero-content span::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--peach); /* your BG color */
-  transform: translateX(0);
-  animation: reveal 5s ease forwards;
-}
-
-@keyframes reveal {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-}
-
+          font-family: "Sacramento", cursive;
+          font-size: clamp(60px, 13vw, 90px);
+          color: rgb(225, 106, 82);
+          display: inline-block;
+          position: relative;
+          overflow: hidden;
+          padding-bottom:12px;
+        }
+        .hero-content span::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          background-color: var(--peach);
+          transform: translateX(0);
+          animation: reveal 5s ease forwards;
+        }
+        @keyframes reveal {
+          from { transform: translateX(0); }
+          to { transform: translateX(100%); }
+        }
         .hero-content p {
           max-width: 900px;
           font-size: clamp(18px, 4vw, 22px);
@@ -399,12 +390,12 @@ export default function App() {
           width: 100%;
           height: 100%;
           border-radius: 100%;
-          object-fit:cover;
+          object-fit: cover;
         }
-        .about-minimal h2, .projects-minimal h2, .contact-minimal h2 {
+        .about-minimal h2, .projects-minimal h2, .contact-title {
           font-family: "Sacramento", cursive;
           font-size: clamp(56px, 10vw, 80px);
-          color:rgb(231, 63, 30);
+          color: rgb(231, 63, 30);
           margin-bottom: 50px;
         }
         .about-content {
@@ -436,7 +427,7 @@ export default function App() {
         .skills-minimal span {
           width: 70px; height: 70px;
           background: rgba(252, 137, 114, 0.15);
-          color:rgb(233, 132, 112);
+          color: rgb(233, 132, 112);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -445,15 +436,15 @@ export default function App() {
           transition: all 0.4s ease;
         }
         .skills-minimal span:hover {
-          background:rgb(234, 136, 116);
-         color:rgb(247, 244, 244);
+          background: rgb(234, 136, 116);
+          color: rgb(247, 244, 244);
           transform: translateY(-12px) scale(1.25);
           box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
         }
         .projects-minimal h2 {
           font-family: "Sacramento", cursive;
           font-size: clamp(60px, 14vw, 77px);
-          color:rgb(231, 63, 30);
+          color: rgb(231, 63, 30);
           margin-bottom: 60px;
         }
         .projects-container {
@@ -504,52 +495,102 @@ export default function App() {
           font-weight: 600;
         }
         .view-btn {
-         align-self: flex-start;
-        background: linear-gradient(135deg, #ff8d75, #ffb19c);
-         color: white;
-        padding: 12px 28px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        transition: all 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
-       }
+          align-self: flex-start;
+          background: linear-gradient(135deg, #ff8d75, #ffb19c);
+          color: white;
+          padding: 12px 28px;
+          border-radius: 30px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 14px;
+          transition: all 0.3s ease;
+          -webkit-tap-highlight-color: transparent;
+        }
+        .view-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
+        }
+        .view-btn:focus { outline: none; }
+        .view-btn:visited { color: white !important; }
 
-      .view-btn:hover {
-       transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
-      }
-
-      .view-btn:focus {
-      outline: none;
-     }
-
-     /* ⭐ FIX for the blue color after visiting */
-     .view-btn:visited {
-     color: white !important;
-     }   
-
-        .icon-orbit { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
-        .icon-orb {
-          width: 60px; height: 60px;
-          background: rgba(255,255,255,0.3);
-          backdrop-filter: blur(20px);
-          border-radius: 50%;
+        /* CONTACT SECTION STYLING */
+        .contact-section {
+          padding: 120px 20px;
           display: flex;
-          align-items: center;
           justify-content: center;
-          font-size: 38px;
-          color: #ff8d75;
-          border: 3px solid rgba(240, 110, 67, 0.4);
-          transition: 0.5s;
+          position: relative;
+          z-index: 2;
         }
-        .icon-orb:hover {
-          transform: translateY(-10px) scale(1.0);
-          background: white;
-          box-shadow: 0 30px 60px rgba(255,100,80,0.35);
+        .contact-card {
+          background: rgba(255, 255, 255, 0.47);
+          backdrop-filter: blur(25px);
+          border-radius: 40px;
+          padding: 60px;
+          max-width: 700px;
+          width: 100%;
+          text-align: center;
+          border: 2px solid rgba(255, 130, 100, 0.35);
+          box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
         }
-        .icon-orb:hover i { color: #ff6b6b; }
+        .contact-title {
+          font-family: "Sacramento", cursive;
+          font-size: clamp(60px, 10vw, 80px);
+          color: rgb(231, 63, 30);
+          margin-bottom: 10px;
+        }
+        .contact-sub {
+          font-size: 20px;
+          color: #5a3b3b;
+          margin-bottom: 40px;
+        }
+        .contact-icons {
+          display: flex;
+          justify-content: center;
+          gap: 50px;
+          flex-wrap: wrap;
+        }
+        .contact-orb {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(244, 206, 206, 0.46);
+  backdrop-filter: blur(22px);
+  border: 3px solid rgba(230, 110, 80, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: #ff8d75;          /* default orb color */
+  text-decoration: none;    /* removes underline */
+  transition: all 0.4s ease;
+}
+
+/* Icon inherits orb color by default */
+.contact-orb i {
+  color: inherit;
+  transition: color 0.4s ease;
+}
+
+/* Hover effect on orb */
+.contact-orb:hover {
+  transform: translateY(-12px) scale(1.1);
+  background: rgb(244, 186, 186);
+  box-shadow: 0 25px 50px rgba(255, 110, 95, 0.35);
+}
+
+/* Hover changes icon color too */
+.contact-orb:hover i {
+  color: #ff6b6b;
+}
+
+/* Remove default link colors for all states */
+.contact-orb:link,
+.contact-orb:visited,
+.contact-orb:active,
+.contact-orb:focus {
+  color: #ff8d75;           /* keeps orb color */
+}
+
         .bg-name {
           position: fixed;
           top: 50%; left: 50%;
@@ -570,21 +611,14 @@ export default function App() {
         footer {
           text-align: center;
           padding: 10px;
-          background: #ffe7dd;
+          background: rgb(252, 249, 248);
           color: var(--brown);
           font-size: 18px;
         }
         @media (max-width: 1024px) { .project-deck { width: 85%; height: 60vh; } }
-        @media (max-width: 768px) {
+        @media (max-width: 800px) {
           .hero-wrapper { flex-direction: column-reverse; gap: 38px; text-align: center; }
           .hero-content { text-align: center; }
-        }
-        @media (max-width: 150px) {
-          .project-card { width: 100px; height: 200px; padding: 10px; border-radius: 22px; }
-          .project-deck { height: 62vh; }
-          .project-deck.split #card1 { transform: translate(-50%, -50%) translateX(-90px) translateY(-18px) rotate(-6deg); }
-          .project-deck.split #card2 { transform: translate(-50%, -50%) translateX(90px) translateY(18px) rotate(6deg); }
-          .bg-name { font-size: clamp(50px, 12vw, 90px); opacity: 0.09; }
         }
       `}</style>
     </>
