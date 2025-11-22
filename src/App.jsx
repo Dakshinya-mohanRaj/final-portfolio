@@ -92,9 +92,8 @@ export default function App() {
             </p>
             <p>
               <span className="soft-highlight">
-                Currently building with <strong>React + Vite</strong>
+                Currently building with <strong>React + Vite</strong> for instant performance.
               </span>{" "}
-              for instant performance.
             </p>
             <div className="skills-minimal" aria-hidden="true">
               <span title="HTML5"><i className="fab fa-html5"></i></span>
@@ -343,9 +342,10 @@ export default function App() {
           text-align: left;
         }
         .hero-content h1 { font-size: clamp(60px, 7vw, 86px); color: var(--brown); }
-         .hero-content h1:first-child {
-         margin-bottom: 25px; /* adjust this spacing */
+        .hero-content h1:first-child {
+  margin-bottom: 25px; /* adjust this spacing */
 }
+
         .hero-content span {
   font-family: "Sacramento", cursive;
   font-size: clamp(60px, 13vw, 90px);
@@ -435,8 +435,8 @@ export default function App() {
         }
         .skills-minimal span {
           width: 70px; height: 70px;
-          background: rgba(255,141,117,0.15);
-          color:rgb(223, 123, 103);
+          background: rgba(252, 137, 114, 0.15);
+          color:rgb(233, 132, 112);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -446,9 +446,9 @@ export default function App() {
         }
         .skills-minimal span:hover {
           background:rgb(234, 136, 116);
-          color: white;
+         color:rgb(247, 244, 244);
           transform: translateY(-12px) scale(1.25);
-          box-shadow: 0 20px 40px rgba(255,107,107,0.45);
+          box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
         }
         .projects-minimal h2 {
           font-family: "Sacramento", cursive;
@@ -492,7 +492,7 @@ export default function App() {
         #card2 { transform: translate(-50%, -50%) translateX(14px) translateY(12px) rotate(-3deg); z-index: 9; }
         .project-deck.split #card1 { transform: translate(-20%, -50%) translateX(-200px) translateY(-50px) rotate(-9deg) scale(.9); z-index: 10; }
         .project-deck.split #card2 { transform: translate(-50%, -30%) translateX(220px) translateY(30px) rotate(8deg) scale(.9); z-index: 15; }
-        .card-content h3 { font-size: 2px; color: #4d3c3c; margin-bottom: 40px; font-weight: 500; }
+        .card-content h3 { font-size: 24px; color: #4d3c3c; margin-bottom: 20px; font-weight: 600; }
         .card-content p { font-size: 18px; color: #5a4545; line-height: 2; margin-bottom: 25px; }
         .tech {
           font-size: 13px;
@@ -503,7 +503,7 @@ export default function App() {
           align-self: flex-start;
           font-weight: 600;
         }
-       .view-btn {
+        .view-btn {
          align-self: flex-start;
         background: linear-gradient(135deg, #ff8d75, #ffb19c);
          color: white;
@@ -529,6 +529,7 @@ export default function App() {
      .view-btn:visited {
      color: white !important;
      }   
+
         .icon-orbit { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
         .icon-orb {
           width: 60px; height: 60px;
