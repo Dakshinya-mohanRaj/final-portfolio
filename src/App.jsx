@@ -445,7 +445,7 @@ export default function App() {
           font-family: "Sacramento", cursive;
           font-size: clamp(60px, 14vw, 77px);
           color: rgb(231, 63, 30);
-          margin-bottom: 60px;
+          margin-bottom: 80px;
         }
         .projects-container {
           perspective: 1500px;
@@ -455,34 +455,56 @@ export default function App() {
           min-height: 100px;
         }
         .project-deck {
-          position: relative;
-          width: 300px;
-          height: 500px;
-          cursor: pointer;
-          transition: all 0.6s ease;
-        }
-        .project-card {
-          position: absolute;
-          width: 300px;
-          height: 380px;
-          padding: 36px;
-          border-radius: 42px;
-          background: rgba(255, 255, 255, 0.97);
-          border: 2.5px solid rgba(237, 146, 107, 0.7);
-          box-shadow: 0 12px 35px rgba(255, 145, 120, 0.22);
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          transition: transform 1.0s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease, border 0.4s ease;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          backdrop-filter: blur(6px);
-        }
-        #card1 { transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg); z-index: 10; }
-        #card2 { transform: translate(-50%, -50%) translateX(14px) translateY(12px) rotate(-3deg); z-index: 9; }
-        .project-deck.split #card1 { transform: translate(-20%, -50%) translateX(-200px) translateY(-50px) rotate(-9deg) scale(.9); z-index: 10; }
-        .project-deck.split #card2 { transform: translate(-50%, -30%) translateX(220px) translateY(30px) rotate(8deg) scale(.9); z-index: 15; }
+  position: relative;
+  width: 300px;
+  height: 500px;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+
+.project-card {
+  position: absolute;
+  width: 300px;
+  height: 380px;
+  padding: 36px;
+  border-radius: 42px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 2.5px solid rgba(237, 146, 107, 0.7);
+  box-shadow: 0 12px 35px rgba(255, 145, 120, 0.22);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 1.0s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease, border 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(6px);
+}
+
+/* initial positions */
+#card1 {
+  transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg);
+  z-index: 20; /* front card on top */
+}
+
+#card2 {
+  transform: translate(-50%, -50%) translateX(14px) translateY(12px) rotate(-3deg);
+  z-index: 10; /* back card behind */
+}
+
+/* SPLIT – only back card moves out */
+.project-deck.split #card1 {
+  /* front card moves slightly forward and rotates */
+  transform: translate(-80%, -50%) translateX(-120px) translateY(-50px) rotate(-9deg) scale(0.95);
+  z-index: 20;
+}
+
+.project-deck.split #card2 {
+  /* back card moves backward and rotates */
+  transform: translate(-30%, -50%) translateX(120px) translateY(30px) rotate(8deg) scale(0.9);
+  z-index: 10;
+}
+
         .card-content h3 { font-size: 24px; color: #4d3c3c; margin-bottom: 20px; font-weight: 600; }
         .card-content p { font-size: 18px; color: #5a4545; line-height: 2; margin-bottom: 25px; }
         .tech {
