@@ -411,117 +411,133 @@ export default function App() {
           box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
         }
 
+        
         /* NEW: Deck + Teddy perfectly together */
-        .deck-with-teddy {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 600px;
-          perspective: 1500px;
-        }
+.deck-with-teddy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  perspective: 1500px;
+}
 
-        .project-deck {
-          position: relative;
-          width: 260px;
-          height: auto;
-          min-height: 320px;
-          margin-bottom: 20px;
-          cursor: default;
-          transition: all 0.6s ease;
-        }
+.project-deck {
+  position: relative;
+  width: 260px;
+  height: auto;
+  min-height: 380px;
+  margin-bottom: 20px;
+  cursor: default;
+  transition: all 0.6s ease;
+}
 
-        .project-card {
-          position: absolute;
-          width: 240px;
-          height: 380px;
-          padding: 22px;
-          border-radius: 38px;
-          background: rgba(255, 255, 255, 0.97);
-          border: 2.3px solid rgba(237, 146, 107, 0.7);
-          box-shadow: 0 10px 35px rgba(255, 145, 120, 0.22);
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-          box-shadow 0.5s ease, border 0.4s ease;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          backdrop-filter: blur(6px);
-          z-index: 10;
-        }
+.project-card {
+  position: absolute;
+  width: 290px;
+  height: 350px;
+  padding: 20px;
+  border-radius: 38px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 2.3px solid rgba(237, 146, 107, 0.7);
+  box-shadow: 0 10px 35px rgba(255, 145, 120, 0.22);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+              border 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
 
-        #card1 {
-          transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg);
-          z-index: 20;
-        }
-        #card2 {
-          transform: translate(-50%, -50%) translateX(10px) translateY(-14px) rotate(2deg);
-          z-index: 20;
-        }
+#card1 {
+  transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg);
+  z-index: 20;
+}
+#card2 {
+  transform: translate(-50%, -50%) translateX(12px) translateY(10px) rotate(-3deg);
+  z-index: 10;
+}
 
-        .project-deck.split #card1 {
-          transform: translate(-80%, -50%) translateX(-100px) translateY(-40px) rotate(-10deg) scale(0.94);
-        }
-        .project-deck.split #card2 {
-          transform: translate(-30%, -50%) translateX(120px) translateY(30px) rotate(8deg) scale(0.90);
-        }
+/* Split animation – smooth & clean */
+.project-deck.split #card1 {
+  transform: translate(-80%, -50%) translateX(-100px) translateY(-40px) rotate(-10deg) scale(0.94);
+}
+.project-deck.split #card2 {
+  transform: translate(-30%, -50%) translateX(100px) translateY(20px) rotate(9deg) scale(0.92);
+}
 
-        .project-deck.split #card1:hover {
-          transform: translate(-80%, -50%) translateX(-100px) translateY(-60px) rotate(-10deg) scale(1.02);
-          box-shadow: 0 32px 65px rgba(255, 145, 120, 0.48);
-          z-index: 50;
-        }
-        .project-deck.split #card2:hover {
-          transform: translate(-30%, -50%) translateX(100px) translateY(0px) rotate(9deg) scale(1.0);
-          box-shadow: 0 32px 65px rgba(255, 145, 120, 0.48);
-          z-index: 50;
-        }
+/* HOVER: Only subtle lift + slight scale — NO GLOW/SHADOW/SHAKE */
+.project-deck.split #card1:hover {
+  transform: translate(-80%, -50%) translateX(-100px) translateY(-60px) rotate(-10deg) scale(1.02);
+  z-index: 50;
+  border: 2.8px solid rgba(237, 146, 107, 0.9);
+}
+.project-deck.split #card2:hover {
+  transform: translate(-30%, -50%) translateX(100px) translateY(0px) rotate(9deg) scale(1.0);
+  z-index: 50;
+  border: 2.8px solid rgba(237, 146, 107, 0.9);
+}
 
-        .card-content h3 { font-size: 20px; color: #4d3c3c; margin-bottom: 14px; font-weight: 600; }
-        .card-content p { font-size: 15px; color: #5a4545; line-height: 1.8; margin-bottom: 18px; }
-        .tech {
-          font-size: 13px;
-          background: linear-gradient(135deg, #ff8d75, #ffb19c);
-          color: white;
-          padding: 6px 14px;
-          border-radius: 20px;
-          align-self: flex-start;
-          font-weight: 600;
-        }
-        .view-btn {
-          align-self: flex-start;
-          background: linear-gradient(135deg, #ff8d75, #ffb19c);
-          color: white;
-          padding: 12px 28px;
-          border-radius: 30px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 14px;
-          transition: all 0.3s ease;
-        }
-        .view-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
-        }
+/* Text styles */
+.card-content h3 {
+  font-size: 20px;
+  color: #4d3c3c;
+  margin-bottom: 45px;
+  font-weight: 600;
+}
+.card-content p {
+  font-size: 15px;
+  color: #5a4545;
+  line-height: 1.8;
+  margin-bottom: 60px;
+}
+.tech {
+  font-size: 13px;
+  background: linear-gradient(135deg, #ff8d75, #ffb19c);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  align-self: flex-start;
+  font-weight: 600;
+}
+.view-btn {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #ff8d75, #ffb19c);
+  color: white;
+  padding: 12px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.view-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
+}
 
-        /* Teddy – cute & perfectly placed */
-        .single-teddy {
-          width: 100px;
-          height: 120px;
-          object-fit: contain;
-          cursor: pointer;
-          animation: teddy-bounce 2s infinite ease-in-out;
-          transition: transform 0.3s ease;
-        }
-        .single-teddy:hover {
-          transform: scale(1.4) rotate(15deg);
-        }
-        @keyframes teddy-bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
-        }
+/* Teddy – cute & perfectly placed */
+.single-teddy {
+  width: 90px;
+  height: 100px;
+  object-fit: contain;
+  cursor: pointer;
+  animation: teddy-bounce 2s infinite ease-in-out;
+  transition: transform 0.3s ease;
+  margin-top: 35px;   /* 🆕 Moves teddy slightly down */
+}
+
+.single-teddy:hover {
+  transform: scale(1.4) rotate(15deg);
+}
+@keyframes teddy-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
 
         /* Contact */
         .contact-section {
@@ -547,23 +563,23 @@ export default function App() {
         .contact-orb {
           width: 70px; height: 70px;
           border-radius: 50%;
-          background: rgba(245, 237, 237, 0.46);
+          background: rgba(236, 116, 116, 0.87);
           backdrop-filter: blur(22px);
           border: 3px solid rgba(230, 110, 80, 0.4);
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 40px;
-          color: #ff8d75;
+          color:rgba(233, 134, 114, 0.93);
           text-decoration: none;
           transition: all 0.4s ease;
         }
         .contact-orb:hover {
           transform: translateY(-12px) scale(1.1);
-          background: rgba(245, 183, 183, 0.79);
+          background: rgba(231, 117, 117, 0.79);
           box-shadow: 0 25px 50px rgba(237, 183, 177, 0.35);
         }
-        .contact-orb:hover i { color: #ff6b6b; }
+        .contact-orb:hover i { color:rgb(245, 112, 82); }
 
         /* Background Name */
         .bg-name {
