@@ -1,18 +1,11 @@
 // src/App.jsx
 import React, { useState, useEffect } from "react";
-import DaksheeImg from "./assets/Dakshee.png"; // <-- place your image at src/assets/Dakshee.png
+import DaksheeImg from "./assets/Dakshee.png";
+import TeddyGif from "./assets/teddy.gif";   // Place your teddy GIF here
 
 export default function App() {
   const [isSplit, setIsSplit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Click to split project cards
-  useEffect(() => {
-    const deck = document.querySelector(".project-deck");
-    const toggle = () => setIsSplit((prev) => !prev);
-    deck?.addEventListener("click", toggle);
-    return () => deck?.removeEventListener("click", toggle);
-  }, []);
 
   // Close mobile menu when resizing to desktop
   useEffect(() => {
@@ -23,8 +16,8 @@ export default function App() {
     return () => window.removeEventListener("resize", onResize);
   }, [menuOpen]);
 
-  // close menu when a nav link clicked
   const handleNavClick = () => setMenuOpen(false);
+  const handleTeddyClick = () => setIsSplit(prev => !prev);
 
   return (
     <>
@@ -44,10 +37,9 @@ export default function App() {
       <div className="blob b3" aria-hidden="true"></div>
 
       {/* Navbar */}
-      <nav className="navbar" role="navigation podpor: true" aria-label="Main navigation">
+      <nav className="navbar" role="navigation" aria-label="Main navigation">
         <div className="logo">Dakshinya</div>
 
-        {/* Hamburger - THREE LINES (replaces dots) */}
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -59,7 +51,6 @@ export default function App() {
           <span className="line"></span>
         </button>
 
-        {/* Nav links */}
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           <li><a href="#home" onClick={handleNavClick}>Home</a></li>
           <li><a href="#about" onClick={handleNavClick}>About</a></li>
@@ -68,7 +59,7 @@ export default function App() {
         </ul>
       </nav>
 
-      {/* Hero – Text Left, Image Right */}
+      {/* Hero */}
       <section id="home" className="section">
         <div className="hero-wrapper">
           <div className="hero-content">
@@ -111,19 +102,14 @@ export default function App() {
         </div>
       </section>
 
-      {/* Projects – Click to Split */}
+      {/* Projects – Teddy now perfectly centered under cards */}
       <section id="projects" className="section">
         <div className="projects-minimal">
           <h2>My Projects</h2>
-          <div className="projects-container">
-            <div
-              className={`project-deck ${isSplit ? "split" : ""}`}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") setIsSplit((s) => !s);
-              }}
-            >
+
+          <div className="deck-with-teddy">
+            {/* Project Deck */}
+            <div className={`project-deck ${isSplit ? "split" : ""}`}>
               <div className="project-card" id="card1">
                 <div className="card-content">
                   <h3>Portfolio Website</h3>
@@ -139,11 +125,12 @@ export default function App() {
                   View Live
                 </a>
               </div>
+
               <div className="project-card" id="card2">
                 <div className="card-content">
                   <h3>Nail Glam Website</h3>
                   <p>Real-time todo app with drag & drop, Firebase sync.</p>
-                  <span className="tech">React • Firebase • Tailwind</span>
+                  <span className="tech">HTML / CSS • Firebase </span>
                 </div>
                 <a
                   href="https://dakshinya-mohanraj.github.io/nail-glam/"
@@ -155,6 +142,14 @@ export default function App() {
                 </a>
               </div>
             </div>
+
+            {/* Teddy – always visible, centered, and clickable */}
+            <img
+              src={TeddyGif}
+              alt="Click me to split cards!"
+              className="single-teddy"
+              onClick={handleTeddyClick}
+            />
           </div>
         </div>
       </section>
@@ -190,14 +185,13 @@ export default function App() {
         </div>
       </section>
 
-      {/* Background Name */}
       <div className="bg-name" aria-hidden="true">
         DAKSHINYA <br /> MOHAN RAJ
       </div>
 
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
 
-      {/* All Styles - Only changed the hamburger part */}
+      {/* ALL STYLES – Updated for perfect teddy placement */}
       <style>{`
         :root {
           --peach:rgb(251, 230, 223);
@@ -215,6 +209,7 @@ export default function App() {
           width: 100%;
           min-height: 100vh;
         }
+
         /* Blobs */
         .blob { position: fixed; border-radius: 50%; filter: blur(70px); opacity: 0.6; z-index: -1; animation: float 12s infinite ease-in-out; }
         .b1 { width: 500px; height: 500px; background: var(--peach); top: -10%; left: -10%; }
@@ -230,23 +225,18 @@ export default function App() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background: rgba(246, 245, 245, 0.8);
+          background: rgba(246, 235, 235, 0.55);
           backdrop-filter: blur(12px);
           z-index: 1000;
         }
         .logo {
           font-family: "Sacramento", cursive;
           font-size: 36px;
-          background: linear-gradient(45deg, #ff8d75, #ffb19c);
+          background: linear-gradient(45deg,rgb(215, 57, 25), #ffb19c);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         }
-        /* Desktop nav links */
-        .nav-links {
-          display: flex;
-          gap: 30px;
-          list-style: none;
-        }
+        .nav-links { display: flex; gap: 30px; list-style: none; }
         .nav-links a {
           text-decoration: none;
           color: var(--brown);
@@ -255,9 +245,8 @@ export default function App() {
           border-radius: 20px;
           transition: 0.3s;
         }
-        .nav-links a:hover { background:hsl(18, 46.50%, 63.30%); }
+        .nav-links a:hover { background:hsl(9, 83.70%, 71.20%); }
 
-        /* Hamburger - THREE LINES (clean & minimal) */
         .hamburger {
           display: none;
           flex-direction: column;
@@ -268,7 +257,6 @@ export default function App() {
           background: transparent;
           border: none;
           cursor: pointer;
-          padding: 0;
           z-index: 1100;
         }
         .hamburger .line {
@@ -278,17 +266,10 @@ export default function App() {
           border-radius: 3px;
           transition: all 0.35s ease;
         }
-        .hamburger.open .line:nth-child(1) {
-          transform: translateY(9px) rotate(45deg);
-        }
-        .hamburger.open .line:nth-child(2) {
-          opacity: 0;
-        }
-        .hamburger.open .line:nth-child(3) {
-          transform: translateY(-9px) rotate(-45deg);
-        }
+        .hamburger.open .line:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.open .line:nth-child(2) { opacity: 0; }
+        .hamburger.open .line:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-        /* Mobile styles */
         @media (max-width: 768px) {
           .hamburger { display: flex; }
           .nav-links {
@@ -312,10 +293,9 @@ export default function App() {
             transform: translateY(0);
             pointer-events: auto;
           }
-          .nav-links li { width: 100%; text-align: center; }
         }
 
-        /* Rest of your styles - 100% unchanged */
+        /* Sections */
         .section {
           min-height: 100vh;
           display: flex;
@@ -326,6 +306,8 @@ export default function App() {
           text-align: center;
           gap: 20px;
         }
+
+        /* Hero */
         .hero-wrapper {
           display: flex;
           align-items: center;
@@ -335,15 +317,9 @@ export default function App() {
           width: 100%;
           flex-wrap: wrap;
         }
-        .hero-content {
-          flex: 1;
-          min-width: 200px;
-          text-align: left;
-        }
+        .hero-content { flex: 1; min-width: 200px; text-align: left; }
         .hero-content h1 { font-size: clamp(60px, 7vw, 86px); color: var(--brown); }
-        .hero-content h1:first-child {
-          margin-bottom: 25px;
-        }
+        .hero-content h1:first-child { margin-bottom: 25px; }
         .hero-content span {
           font-family: "Sacramento", cursive;
           font-size: clamp(60px, 13vw, 90px);
@@ -356,10 +332,8 @@ export default function App() {
         .hero-content span::after {
           content: "";
           position: absolute;
-          left: 0;
-          top: 0;
-          height: 100%;
-          width: 100%;
+          left: 0; top: 0;
+          height: 100%; width: 100%;
           background-color: var(--peach);
           transform: translateX(0);
           animation: reveal 5s ease forwards;
@@ -386,18 +360,17 @@ export default function App() {
           align-items: center;
           justify-content: center;
         }
-        .hero-img img {
-          width: 100%;
-          height: 100%;
-          border-radius: 100%;
-          object-fit: cover;
-        }
+        .hero-img img { width: 100%; height: 100%; border-radius: 100%; object-fit: cover; }
+
+        /* Titles */
         .about-minimal h2, .projects-minimal h2, .contact-title {
           font-family: "Sacramento", cursive;
           font-size: clamp(56px, 10vw, 80px);
           color: rgb(231, 63, 30);
           margin-bottom: 50px;
         }
+
+        /* About */
         .about-content {
           background: rgba(250, 250, 250, 0.94);
           backdrop-filter: blur(26px);
@@ -416,12 +389,8 @@ export default function App() {
           font-weight: 700;
         }
         .skills-minimal {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 28px;
-          margin-top: 40px;
-          padding-top: 30px;
+          display: flex; flex-wrap: wrap; justify-content: center;
+          gap: 28px; margin-top: 40px; padding-top: 30px;
           border-top: 1.5px solid rgba(255,145,120,0.3);
         }
         .skills-minimal span {
@@ -441,72 +410,77 @@ export default function App() {
           transform: translateY(-12px) scale(1.25);
           box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
         }
-        .projects-minimal h2 {
-          font-family: "Sacramento", cursive;
-          font-size: clamp(60px, 14vw, 77px);
-          color: rgb(231, 63, 30);
-          margin-bottom: 80px;
-        }
-        .projects-container {
-          perspective: 1500px;
+
+        /* NEW: Deck + Teddy perfectly together */
+        .deck-with-teddy {
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           align-items: center;
-          min-height: 100px;
+          justify-content: center;
+          min-height: 600px;
+          perspective: 1500px;
         }
+
         .project-deck {
-  position: relative;
-  width: 300px;
-  height: 500px;
-  cursor: pointer;
-  transition: all 0.6s ease;
-}
+          position: relative;
+          width: 260px;
+          height: auto;
+          min-height: 320px;
+          margin-bottom: 20px;
+          cursor: default;
+          transition: all 0.6s ease;
+        }
 
-.project-card {
-  position: absolute;
-  width: 300px;
-  height: 380px;
-  padding: 36px;
-  border-radius: 42px;
-  background: rgba(255, 255, 255, 0.97);
-  border: 2.5px solid rgba(237, 146, 107, 0.7);
-  box-shadow: 0 12px 35px rgba(255, 145, 120, 0.22);
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: transform 1.0s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease, border 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  backdrop-filter: blur(6px);
-}
+        .project-card {
+          position: absolute;
+          width: 240px;
+          height: 380px;
+          padding: 22px;
+          border-radius: 38px;
+          background: rgba(255, 255, 255, 0.97);
+          border: 2.3px solid rgba(237, 146, 107, 0.7);
+          box-shadow: 0 10px 35px rgba(255, 145, 120, 0.22);
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.5s ease, border 0.4s ease;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          backdrop-filter: blur(6px);
+          z-index: 10;
+        }
 
-/* initial positions */
-#card1 {
-  transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg);
-  z-index: 20; /* front card on top */
-}
+        #card1 {
+          transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg);
+          z-index: 20;
+        }
+        #card2 {
+          transform: translate(-50%, -50%) translateX(10px) translateY(-14px) rotate(2deg);
+          z-index: 20;
+        }
 
-#card2 {
-  transform: translate(-50%, -50%) translateX(14px) translateY(12px) rotate(-3deg);
-  z-index: 10; /* back card behind */
-}
+        .project-deck.split #card1 {
+          transform: translate(-80%, -50%) translateX(-100px) translateY(-40px) rotate(-10deg) scale(0.94);
+        }
+        .project-deck.split #card2 {
+          transform: translate(-30%, -50%) translateX(120px) translateY(30px) rotate(8deg) scale(0.90);
+        }
 
-/* SPLIT – only back card moves out */
-.project-deck.split #card1 {
-  /* front card moves slightly forward and rotates */
-  transform: translate(-80%, -50%) translateX(-120px) translateY(-50px) rotate(-9deg) scale(0.95);
-  z-index: 20;
-}
+        .project-deck.split #card1:hover {
+          transform: translate(-80%, -50%) translateX(-100px) translateY(-60px) rotate(-10deg) scale(1.02);
+          box-shadow: 0 32px 65px rgba(255, 145, 120, 0.48);
+          z-index: 50;
+        }
+        .project-deck.split #card2:hover {
+          transform: translate(-30%, -50%) translateX(100px) translateY(0px) rotate(9deg) scale(1.0);
+          box-shadow: 0 32px 65px rgba(255, 145, 120, 0.48);
+          z-index: 50;
+        }
 
-.project-deck.split #card2 {
-  /* back card moves backward and rotates */
-  transform: translate(-30%, -50%) translateX(120px) translateY(30px) rotate(8deg) scale(0.9);
-  z-index: 10;
-}
-
-        .card-content h3 { font-size: 24px; color: #4d3c3c; margin-bottom: 20px; font-weight: 600; }
-        .card-content p { font-size: 18px; color: #5a4545; line-height: 2; margin-bottom: 25px; }
+        .card-content h3 { font-size: 20px; color: #4d3c3c; margin-bottom: 14px; font-weight: 600; }
+        .card-content p { font-size: 15px; color: #5a4545; line-height: 1.8; margin-bottom: 18px; }
         .tech {
           font-size: 13px;
           background: linear-gradient(135deg, #ff8d75, #ffb19c);
@@ -526,16 +500,30 @@ export default function App() {
           font-weight: 600;
           font-size: 14px;
           transition: all 0.3s ease;
-          -webkit-tap-highlight-color: transparent;
         }
         .view-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
         }
-        .view-btn:focus { outline: none; }
-        .view-btn:visited { color: white !important; }
 
-        /* CONTACT SECTION STYLING */
+        /* Teddy – cute & perfectly placed */
+        .single-teddy {
+          width: 100px;
+          height: 120px;
+          object-fit: contain;
+          cursor: pointer;
+          animation: teddy-bounce 2s infinite ease-in-out;
+          transition: transform 0.3s ease;
+        }
+        .single-teddy:hover {
+          transform: scale(1.4) rotate(15deg);
+        }
+        @keyframes teddy-bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
+
+        /* Contact */
         .contact-section {
           padding: 120px 20px;
           display: flex;
@@ -554,65 +542,30 @@ export default function App() {
           border: 2px solid rgba(255, 130, 100, 0.35);
           box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
         }
-        .contact-title {
-          font-family: "Sacramento", cursive;
-          font-size: clamp(60px, 10vw, 80px);
-          color: rgb(231, 63, 30);
-          margin-bottom: 10px;
-        }
-        .contact-sub {
-          font-size: 20px;
-          color: #5a3b3b;
-          margin-bottom: 40px;
-        }
-        .contact-icons {
-          display: flex;
-          justify-content: center;
-          gap: 50px;
-          flex-wrap: wrap;
-        }
+        .contact-sub { font-size: 20px; color: #5a3b3b; margin-bottom: 40px; }
+        .contact-icons { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
         .contact-orb {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: rgba(244, 206, 206, 0.46);
-  backdrop-filter: blur(22px);
-  border: 3px solid rgba(230, 110, 80, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 40px;
-  color: #ff8d75;          /* default orb color */
-  text-decoration: none;    /* removes underline */
-  transition: all 0.4s ease;
-}
+          width: 70px; height: 70px;
+          border-radius: 50%;
+          background: rgba(245, 237, 237, 0.46);
+          backdrop-filter: blur(22px);
+          border: 3px solid rgba(230, 110, 80, 0.4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 40px;
+          color: #ff8d75;
+          text-decoration: none;
+          transition: all 0.4s ease;
+        }
+        .contact-orb:hover {
+          transform: translateY(-12px) scale(1.1);
+          background: rgba(245, 183, 183, 0.79);
+          box-shadow: 0 25px 50px rgba(237, 183, 177, 0.35);
+        }
+        .contact-orb:hover i { color: #ff6b6b; }
 
-/* Icon inherits orb color by default */
-.contact-orb i {
-  color: inherit;
-  transition: color 0.4s ease;
-}
-
-/* Hover effect on orb */
-.contact-orb:hover {
-  transform: translateY(-12px) scale(1.1);
-  background: rgb(244, 186, 186);
-  box-shadow: 0 25px 50px rgba(255, 110, 95, 0.35);
-}
-
-/* Hover changes icon color too */
-.contact-orb:hover i {
-  color: #ff6b6b;
-}
-
-/* Remove default link colors for all states */
-.contact-orb:link,
-.contact-orb:visited,
-.contact-orb:active,
-.contact-orb:focus {
-  color: #ff8d75;           /* keeps orb color */
-}
-
+        /* Background Name */
         .bg-name {
           position: fixed;
           top: 50%; left: 50%;
@@ -630,6 +583,7 @@ export default function App() {
           0%,100% { opacity: 0.09; transform: translate(-50%,-50%) rotate(-10deg) scale(1); }
           50% { opacity: 0.13; transform: translate(-50%,-50%) rotate(-10deg) scale(1.07); }
         }
+
         footer {
           text-align: center;
           padding: 10px;
@@ -637,11 +591,27 @@ export default function App() {
           color: var(--brown);
           font-size: 18px;
         }
-        @media (max-width: 1024px) { .project-deck { width: 85%; height: 60vh; } }
-        @media (max-width: 800px) {
-          .hero-wrapper { flex-direction: column-reverse; gap: 38px; text-align: center; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+          .project-deck { width: 300px; }
+        }
+        @media (max-width: 768px) {
+          .deck-with-teddy { min-height: 70vh; }
+          .project-deck { width: 280px; }
+          .single-teddy { width: 110px; height: 110px; }
+          .hero-wrapper { flex-direction: column-reverse; text-align: center; }
           .hero-content { text-align: center; }
         }
+
+        /* Link safety */
+        .view-btn, .view-btn:link, .view-btn:visited,
+        .view-btn:hover, .view-btn:active, .view-btn:focus {
+          color: white !important;
+          text-decoration: none !important;
+        }
+        .contact-orb, .contact-orb i { color: inherit !important; }
+        a { color: inherit; text-decoration: none; }
       `}</style>
     </>
   );
