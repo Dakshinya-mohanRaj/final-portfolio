@@ -32,6 +32,7 @@ export default function App() {
       />
 
       {/* Decorative Blobs */}
+      
       <div className="blob b1" aria-hidden="true"></div>
       <div className="blob b2" aria-hidden="true"></div>
       <div className="blob b3" aria-hidden="true"></div>
@@ -150,6 +151,10 @@ export default function App() {
               className="single-teddy"
               onClick={handleTeddyClick}
             />
+            
+
+<p className="teddy-hint">Click me to split 💗</p>
+
           </div>
         </div>
       </section>
@@ -188,6 +193,7 @@ export default function App() {
       <div className="bg-name" aria-hidden="true">
         DAKSHINYA <br /> MOHAN RAJ
       </div>
+      
 
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
 
@@ -361,6 +367,11 @@ export default function App() {
           justify-content: center;
         }
         .hero-img img { width: 100%; height: 100%; border-radius: 100%; object-fit: cover; }
+        /* Reduce Home → About gap */
+#home.section {
+  padding-bottom: 4px !important;
+}
+
 
         /* Titles */
         .about-minimal h2, .projects-minimal h2, .contact-title {
@@ -409,7 +420,13 @@ export default function App() {
           color: rgb(247, 244, 244);
           transform: translateY(-12px) scale(1.25);
           box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
-        }
+        }#about.section {
+  padding-bottom: 40px !important;
+}
+
+#projects.section {
+  padding-top: 40px !important;
+}
 
         
         /* NEW: Deck + Teddy perfectly together */
@@ -538,48 +555,104 @@ export default function App() {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
+  /* Teddy Hint Text */
+.teddy-hint {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #e68873;
+  opacity: 0.85;
+  animation: hintFloat 2.5s infinite ease-in-out;
+  letter-spacing: 0.5px;
+  user-select: none;
+}
 
-        /* Contact */
-        .contact-section {
-          padding: 120px 20px;
-          display: flex;
-          justify-content: center;
-          position: relative;
-          z-index: 2;
-        }
-        .contact-card {
-          background: rgba(255, 255, 255, 0.47);
-          backdrop-filter: blur(25px);
-          border-radius: 40px;
-          padding: 60px;
-          max-width: 700px;
-          width: 100%;
-          text-align: center;
-          border: 2px solid rgba(255, 130, 100, 0.35);
-          box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
-        }
-        .contact-sub { font-size: 20px; color: #5a3b3b; margin-bottom: 40px; }
-        .contact-icons { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
-        .contact-orb {
-          width: 70px; height: 70px;
-          border-radius: 50%;
-          background: rgba(236, 116, 116, 0.87);
-          backdrop-filter: blur(22px);
-          border: 3px solid rgba(230, 110, 80, 0.4);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 40px;
-          color:rgba(233, 134, 114, 0.93);
-          text-decoration: none;
-          transition: all 0.4s ease;
-        }
-        .contact-orb:hover {
-          transform: translateY(-12px) scale(1.1);
-          background: rgba(231, 117, 117, 0.79);
-          box-shadow: 0 25px 50px rgba(237, 183, 177, 0.35);
-        }
-        .contact-orb:hover i { color:rgb(245, 112, 82); }
+/* Smooth floating animation */
+@keyframes hintFloat {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(-6px); opacity: 1; }
+}
+
+
+       /* Contact */
+.contact-section {
+  padding: 120px 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-card {
+  background: rgba(255, 255, 255, 0.47);
+  backdrop-filter: blur(25px);
+  border-radius: 40px;
+  padding: 60px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid rgba(255, 130, 100, 0.35);
+  box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
+}
+
+.contact-sub {
+  font-size: 20px;
+  color: #5a3b3b;
+  margin-bottom: 40px;
+}
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+/* Animated Color Changing Orb */
+.contact-orb {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8c78, #ffb3a0);
+  background-size: 200% 200%;
+  animation: orbColors 4s ease infinite;
+
+  backdrop-filter: blur(22px);
+  border: 3px solid rgba(230, 110, 80, 0.4);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 40px;
+  color: #ff7c6b;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+/* Hover Glow + Lift */
+.contact-orb:hover {
+  transform: translateY(-12px) scale(1.12);
+  box-shadow: 0 25px 50px rgba(255, 150, 130, 0.45);
+}
+
+/* Icon hover color */
+.contact-orb:hover i {
+  color: rgb(255, 111, 88);
+}
+
+/* Color-changing animation */
+@keyframes orbColors {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
         /* Background Name */
         .bg-name {
