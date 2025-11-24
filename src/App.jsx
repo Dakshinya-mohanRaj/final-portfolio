@@ -31,11 +31,44 @@ export default function App() {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       />
 
-      {/* Decorative Blobs */}
-      
-      <div className="blob b1" aria-hidden="true"></div>
-      <div className="blob b2" aria-hidden="true"></div>
-      <div className="blob b3" aria-hidden="true"></div>
+     {/* Decorative Blobs */}
+<div className="blob b1" aria-hidden="true"></div>
+<div className="blob b2" aria-hidden="true"></div>
+<div className="blob b3" aria-hidden="true"></div>
+
+      {/* Corner Spray Effect – Soft Floating Hearts & Sparkles */}
+      <div className="corner-spray top-left">
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle heart">♥</div>
+        <div className="spray-particle sparkle"></div>
+        <div className="spray-particle heart">✧</div>
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle sparkle"></div>
+      </div>
+      <div className="corner-spray top-right">
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle heart">♥</div>
+        <div className="spray-particle sparkle"></div>
+        <div className="spray-particle heart">✧</div>
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle sparkle"></div>
+      </div>
+      <div className="corner-spray bottom-left">
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle heart">♥</div>
+        <div className="spray-particle sparkle"></div>
+        <div className="spray-particle heart">✧</div>
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle sparkle"></div>
+      </div>
+      <div className="corner-spray bottom-right">
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle heart">♥</div>
+        <div className="spray-particle sparkle"></div>
+        <div className="spray-particle heart">✧</div>
+        <div className="spray-particle heart">♡</div>
+        <div className="spray-particle sparkle"></div>
+      </div>
 
       {/* Navbar */}
       <nav className="navbar" role="navigation" aria-label="Main navigation">
@@ -152,8 +185,7 @@ export default function App() {
               onClick={handleTeddyClick}
             />
             
-
-<p className="teddy-hint">Click me to split 💗</p>
+            <p className="teddy-hint">Click me to split 💗</p>
 
           </div>
         </div>
@@ -174,6 +206,7 @@ export default function App() {
               rel="noreferrer"
               className="contact-orb"
               aria-label="GitHub"
+              
             >
               <i className="fab fa-github"></i>
             </a>
@@ -186,6 +219,8 @@ export default function App() {
             >
               <i className="fab fa-linkedin"></i>
             </a>
+            
+            
           </div>
         </div>
       </section>
@@ -193,17 +228,18 @@ export default function App() {
       <div className="bg-name" aria-hidden="true">
         DAKSHINYA <br /> MOHAN RAJ
       </div>
-      
 
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
 
-      {/* ALL STYLES – Updated for perfect teddy placement */}
+      {/* ALL STYLES – Now with Corner Spray Effect */}
       <style>{`
         :root {
-          --peach:rgb(251, 230, 223);
-          --peach2:rgb(242, 165, 137);
-          --cream:rgb(241, 234, 230);
+          --peach: rgb(251, 230, 223);
+          --peach2: rgb(242, 165, 137);
+          --cream: rgb(241, 234, 230);
           --brown: #4d3c3c;
+          --soft-pink: #ffb3a0;
+          --sparkle: #ffe6dc;
         }
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         *:focus { outline: none; }
@@ -216,12 +252,83 @@ export default function App() {
           min-height: 100vh;
         }
 
-        /* Blobs */
-        .blob { position: fixed; border-radius: 50%; filter: blur(70px); opacity: 0.6; z-index: -1; animation: float 12s infinite ease-in-out; }
-        .b1 { width: 500px; height: 500px; background: var(--peach); top: -10%; left: -10%; }
-        .b2 { width: 550px; height: 550px; background: #ffe1d7; bottom: -15%; right: -10%; animation-delay: 4s; }
-        .b3 { width: 400px; height: 400px; background: var(--peach2); top: 40%; left: -10%; animation-delay: 8s; }
-        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-50px); } }
+        :root {
+  --peach: rgb(251, 230, 223);
+  --peach2: rgb(242, 165, 137);
+}
+
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.7;
+  z-index: 0;
+  animation: float 12s infinite ease-in-out;
+}
+
+.b1 { width: 800px; height: 300px; background: var(--peach); top: -50%; left: -10%; }
+.b2 { width: 300px; height: 200px; background: rgb(230, 89, 42); bottom: -8%; right: -10%; animation-delay: 4s; }
+.b3 { width: 300px; height: 400px; background: var(--peach2); top: 10%; left: -10%; animation-delay: 8s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+}
+
+        /* Corner Spray Effect – Soft Floating Hearts & Sparkles */
+        .corner-spray {
+          position: fixed;
+          pointer-events: none;
+          z-index: 1;
+          overflow: hidden;
+          width: 200px;
+          height: 200px;
+        }
+        .corner-spray.top-left { top: 0; left: 0; }
+        .corner-spray.top-right { top: 0; right: 0; transform: rotate(90deg); }
+        .corner-spray.bottom-left { bottom: 0; left: 0; transform: rotate(-90deg); }
+        .corner-spray.bottom-right { bottom: 0; right: 0; transform: rotate(180deg); }
+
+        .spray-particle {
+          position: absolute;
+          opacity: 0;
+          animation: sprayFloat 12s infinite ease-in-out;
+        }
+        .spray-particle.heart {
+          font-size: 18px;
+          color: var(--peach2);
+          filter: drop-shadow(0 2px 4px rgba(255, 130, 100, 0.3));
+        }
+        .spray-particle.sparkle {
+          width: 6px;
+          height: 6px;
+          background: var(--sparkle);
+          border-radius: 50%;
+          box-shadow: 0 0 12px #fff1eb;
+        }
+        .spray-particle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .spray-particle:nth-child(2) { top: 30%; left: 25%; animation-delay: 2s; }
+        .spray-particle:nth-child(3) { top: 50%; left: 15%; animation-delay: 4.5s; }
+        .spray-particle:nth-child(4) { top: 20%; left: 40%; animation-delay: 7s; font-size: 14px; }
+        .spray-particle:nth-child(5) { top: 70%; left: 20%; animation-delay: 1.5s; }
+        .spray-particle:nth-child(6) { top: 45%; left: 35%; animation-delay: 9s; }
+        .spray-particle.sparkle { animation: sparkleDrift 10s infinite ease-in-out; }
+
+        @keyframes sprayFloat {
+          0% { transform: translate(0,0) rotate(0deg) scale(0); opacity: 0; }
+          10% { opacity: 0.7; transform: translate(20px,-20px) rotate(15deg) scale(1); }
+          50% { opacity: 0.9; transform: translate(50px,-80px) rotate(40deg) scale(1.1); }
+          100% { transform: translate(80px,-140px) rotate(70deg) scale(0); opacity: 0; }
+        }
+        @keyframes sparkleDrift {
+          0%,100% { transform: translate(0,0) scale(0); opacity: 0; }
+          15% { opacity: 0.8; transform: translate(15px,-15px) scale(1); }
+          70% { opacity: 0.4; transform: translate(60px,-100px) scale(0.8); }
+        }
+        @media (max-width: 768px) {
+          .spray-particle { font-size: 14px !important; }
+          .spray-particle.sparkle { width: 4px; height: 4px; }
+        }
 
         /* Navbar */
         .navbar {
@@ -318,11 +425,21 @@ export default function App() {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 2vw;
+          gap: 1vw;
           max-width: 1200px;
           width: 100%;
           flex-wrap: wrap;
         }
+          /* Reduce padding for home section */
+#home.section {
+  padding: 100px 5% 50px 5%; /* top 100px → 50px less, bottom 50px */
+}
+
+/* Reduce gap between hero content and image */
+.hero-wrapper {
+  gap: 1vw; /* previously 2vw */
+}
+
         .hero-content { flex: 1; min-width: 200px; text-align: left; }
         .hero-content h1 { font-size: clamp(60px, 7vw, 86px); color: var(--brown); }
         .hero-content h1:first-child { margin-bottom: 25px; }
@@ -367,9 +484,49 @@ export default function App() {
           justify-content: center;
         }
         .hero-img img { width: 100%; height: 100%; border-radius: 100%; object-fit: cover; }
-        /* Reduce Home → About gap */
+
+        #home.section { padding-bottom: 80px !important; }
+        /* Home section overrides */
 #home.section {
-  padding-bottom: 4px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  min-height: 100vh;       /* fill full screen */
+  padding: 50px 5%;        /* reduce top/bottom padding */
+  text-align: center;
+  gap: 20px;
+}
+
+/* Hero wrapper adjustments */
+#home .hero-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;   /* vertical center in row */
+  justify-content: center; /* horizontal center */
+  gap: 2vw;              /* reduce if needed */
+  flex-wrap: nowrap;      /* keep content & image in a row */
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Hero content */
+#home .hero-content {
+  flex: 1;
+  min-width: 200px;
+  text-align: center; /* centre text for home page */
+}
+
+/* Hero image */
+#home .hero-img {
+  flex: 0 0 clamp(250px, 40vw, 240px);
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(100deg, var(--peach2), var(--peach));
 }
 
 
@@ -420,239 +577,112 @@ export default function App() {
           color: rgb(247, 244, 244);
           transform: translateY(-12px) scale(1.25);
           box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
-        }#about.section {
-  padding-bottom: 40px !important;
-}
+        }
+        #about.section { padding-bottom: 40px !important; }
+        #projects.section { padding-top: 40px !important; }
 
-#projects.section {
-  padding-top: 40px !important;
-}
+        /* Deck + Teddy */
+        .deck-with-teddy {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 300px;
+          perspective: 1500px;
+        }
+        .project-deck {
+          position: relative;
+          width: 260px;
+          height: auto;
+          min-height: 380px;
+          margin-bottom: 20px;
+          cursor: default;
+          transition: all 0.6s ease;
+        }
+        .project-card {
+          position: absolute;
+          width: 290px;
+          height: 350px;
+          padding: 20px;
+          border-radius: 38px;
+          background: rgba(255, 255, 255, 0.97);
+          border: 2.3px solid rgba(237, 146, 107, 0.7);
+          box-shadow: 0 10px 35px rgba(255, 145, 120, 0.22);
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), border 0.4s ease;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          backdrop-filter: blur(6px);
+          z-index: 10;
+        }
+        #card1 { transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg); z-index: 20; }
+        #card2 { transform: translate(-50%, -50%) translateX(12px) translateY(10px) rotate(-3deg); z-index: 10; }
+        .project-deck.split #card1 { transform: translate(-80%, -50%) translateX(-100px) translateY(-40px) rotate(-10deg) scale(0.94); }
+        .project-deck.split #card2 { transform: translate(-30%, -50%) translateX(100px) translateY(20px) rotate(9deg) scale(0.92); }
+        .project-deck.split #card1:hover { transform: translate(-80%, -50%) translateX(-100px) translateY(-60px) rotate(-10deg) scale(1.02); z-index: 50; border: 2.8px solid rgba(237, 146, 107, 0.9); }
+        .project-deck.split #card2:hover { transform: translate(-30%, -50%) translateX(100px) translateY(0px) rotate(9deg) scale(1.0); z-index: 50; border: 2.8px solid rgba(237, 146, 107, 0.9); }
 
-        
-        /* NEW: Deck + Teddy perfectly together */
-.deck-with-teddy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  perspective: 1500px;
-}
+        .card-content h3 { font-size: 20px; color: #4d3c3c; margin-bottom: 45px; font-weight: 600; }
+        .card-content p { font-size: 15px; color: #5a4545; line-height: 1.8; margin-bottom: 60px; }
+        .tech { font-size: 13px; background: linear-gradient(135deg, #ff8d75, #ffb19c); color: white; padding: 6px 14px; border-radius: 20px; align-self: flex-start; font-weight: 600; }
+        .view-btn { align-self: flex-start; background: linear-gradient(135deg, #ff8d75, #ffb19c); color: white; padding: 12px 26px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
+        .view-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35); }
 
-.project-deck {
-  position: relative;
-  width: 260px;
-  height: auto;
-  min-height: 380px;
-  margin-bottom: 20px;
-  cursor: default;
-  transition: all 0.6s ease;
-}
+        .single-teddy {
+          width: 90px;
+          height: 100px;
+          object-fit: contain;
+          cursor: pointer;
+          animation: teddy-bounce 2s infinite ease-in-out;
+          transition: transform 0.3s ease;
+          margin-top: 35px;
+        }
+        .single-teddy:hover { transform: scale(1.4) rotate(15deg); }
+        @keyframes teddy-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-.project-card {
-  position: absolute;
-  width: 290px;
-  height: 350px;
-  padding: 20px;
-  border-radius: 38px;
-  background: rgba(255, 255, 255, 0.97);
-  border: 2.3px solid rgba(237, 146, 107, 0.7);
-  box-shadow: 0 10px 35px rgba(255, 145, 120, 0.22);
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
-              border 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  backdrop-filter: blur(6px);
-  z-index: 10;
-}
+        .teddy-hint {
+          margin-top: 10px;
+          font-size: 16px;
+          font-weight: 600;
+          color: #e68873;
+          opacity: 0.85;
+          animation: hintFloat 2.5s infinite ease-in-out;
+          letter-spacing: 0.5px;
+          user-select: none;
+        }
+        @keyframes hintFloat { 0%,100% { transform: translateY(0); opacity: 0.9; } 50% { transform: translateY(-6px); opacity: 1; } }
 
-#card1 {
-  transform: translate(-50%, -50%) translateX(-12px) translateY(-18px) rotate(2deg);
-  z-index: 20;
-}
-#card2 {
-  transform: translate(-50%, -50%) translateX(12px) translateY(10px) rotate(-3deg);
-  z-index: 10;
-}
-
-/* Split animation – smooth & clean */
-.project-deck.split #card1 {
-  transform: translate(-80%, -50%) translateX(-100px) translateY(-40px) rotate(-10deg) scale(0.94);
-}
-.project-deck.split #card2 {
-  transform: translate(-30%, -50%) translateX(100px) translateY(20px) rotate(9deg) scale(0.92);
-}
-
-/* HOVER: Only subtle lift + slight scale — NO GLOW/SHADOW/SHAKE */
-.project-deck.split #card1:hover {
-  transform: translate(-80%, -50%) translateX(-100px) translateY(-60px) rotate(-10deg) scale(1.02);
-  z-index: 50;
-  border: 2.8px solid rgba(237, 146, 107, 0.9);
-}
-.project-deck.split #card2:hover {
-  transform: translate(-30%, -50%) translateX(100px) translateY(0px) rotate(9deg) scale(1.0);
-  z-index: 50;
-  border: 2.8px solid rgba(237, 146, 107, 0.9);
-}
-
-/* Text styles */
-.card-content h3 {
-  font-size: 20px;
-  color: #4d3c3c;
-  margin-bottom: 45px;
-  font-weight: 600;
-}
-.card-content p {
-  font-size: 15px;
-  color: #5a4545;
-  line-height: 1.8;
-  margin-bottom: 60px;
-}
-.tech {
-  font-size: 13px;
-  background: linear-gradient(135deg, #ff8d75, #ffb19c);
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  align-self: flex-start;
-  font-weight: 600;
-}
-.view-btn {
-  align-self: flex-start;
-  background: linear-gradient(135deg, #ff8d75, #ffb19c);
-  color: white;
-  padding: 12px 26px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-.view-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35);
-}
-
-/* Teddy – cute & perfectly placed */
-.single-teddy {
-  width: 90px;
-  height: 100px;
-  object-fit: contain;
-  cursor: pointer;
-  animation: teddy-bounce 2s infinite ease-in-out;
-  transition: transform 0.3s ease;
-  margin-top: 35px;   /* 🆕 Moves teddy slightly down */
-}
-
-.single-teddy:hover {
-  transform: scale(1.4) rotate(15deg);
-}
-@keyframes teddy-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-  /* Teddy Hint Text */
-.teddy-hint {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #e68873;
-  opacity: 0.85;
-  animation: hintFloat 2.5s infinite ease-in-out;
-  letter-spacing: 0.5px;
-  user-select: none;
-}
-
-/* Smooth floating animation */
-@keyframes hintFloat {
-  0%, 100% { transform: translateY(0); opacity: 0.9; }
-  50% { transform: translateY(-6px); opacity: 1; }
-}
-
-
-       /* Contact */
-.contact-section {
-  padding: 120px 20px;
-  display: flex;
-  justify-content: center;
-  position: relative;
-  z-index: 2;
-}
-
-.contact-card {
-  background: rgba(255, 255, 255, 0.47);
-  backdrop-filter: blur(25px);
-  border-radius: 40px;
-  padding: 60px;
-  max-width: 700px;
-  width: 100%;
-  text-align: center;
-  border: 2px solid rgba(255, 130, 100, 0.35);
-  box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
-}
-
-.contact-sub {
-  font-size: 20px;
-  color: #5a3b3b;
-  margin-bottom: 40px;
-}
-
-.contact-icons {
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-}
-
-/* Animated Color Changing Orb */
-.contact-orb {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff8c78, #ffb3a0);
-  background-size: 200% 200%;
-  animation: orbColors 4s ease infinite;
-
-  backdrop-filter: blur(22px);
-  border: 3px solid rgba(230, 110, 80, 0.4);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 40px;
-  color: #ff7c6b;
-  text-decoration: none;
-  transition: all 0.4s ease;
-}
-
-/* Hover Glow + Lift */
-.contact-orb:hover {
-  transform: translateY(-12px) scale(1.12);
-  box-shadow: 0 25px 50px rgba(255, 150, 130, 0.45);
-}
-
-/* Icon hover color */
-.contact-orb:hover i {
-  color: rgb(255, 111, 88);
-}
-
-/* Color-changing animation */
-@keyframes orbColors {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+        /* Contact */
+        .contact-section { padding: 120px 20px; display: flex; justify-content: center; position: relative; z-index: 2; }
+        .contact-card {
+          background: rgba(255, 255, 255, 0.47);
+          backdrop-filter: blur(25px);
+          border-radius: 40px;
+          padding: 60px;
+          max-width: 700px;
+          width: 100%;
+          text-align: center;
+          border: 2px solid rgba(255, 130, 100, 0.35);
+          box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
+        }
+        .contact-sub { font-size: 20px; color: #5a3b3b; margin-bottom: 40px; }
+        .contact-icons { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .contact-orb {
+          width: 70px; height: 70px; border-radius: 50%;
+          background: linear-gradient(135deg, #ff8c78, #ffb3a0);
+          background-size: 200% 200%;
+          animation: orbColors 4s ease infinite;
+          backdrop-filter: blur(22px);
+          border: 3px solid rgba(230, 110, 80, 0.4);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 40px; color: #ff7c6b; text-decoration: none; transition: all 0.4s ease;
+        }
+        .contact-orb:hover { transform: translateY(-12px) scale(1.12); box-shadow: 0 25px 50px rgba(255, 150, 130, 0.45); }
+        .contact-orb:hover i { color: rgb(255, 111, 88); }
+        @keyframes orbColors { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
         /* Background Name */
         .bg-name {
@@ -682,9 +712,7 @@ export default function App() {
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-          .project-deck { width: 300px; }
-        }
+        @media (max-width: 1024px) { .project-deck { width: 300px; } }
         @media (max-width: 768px) {
           .deck-with-teddy { min-height: 70vh; }
           .project-deck { width: 280px; }
