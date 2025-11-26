@@ -4,11 +4,34 @@ import DaksheeImg from "./assets/Dakshee.png";
 import TeddyGif from "./assets/teddy.gif";   // Place your teddy GIF here
 import "./App.css";
 
-
-
 export default function App() {
   const [isSplit, setIsSplit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // 🔥 Active Page Indicator State
+  const [activeSection, setActiveSection] = useState("home");
+
+  // 🔥 Active Section Scroll Logic
+  useEffect(() => {
+    const sections = document.querySelectorAll("section, .contact-section");
+
+    const handleScroll = () => {
+      const scrollPos = window.scrollY;
+
+      sections.forEach((sec) => {
+        const offset = sec.offsetTop - 200;
+        const height = sec.offsetHeight;
+        const id = sec.getAttribute("id");
+
+        if (scrollPos >= offset && scrollPos < offset + height) {
+          setActiveSection(id);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close mobile menu when resizing to desktop
   useEffect(() => {
@@ -20,7 +43,7 @@ export default function App() {
   }, [menuOpen]);
 
   const handleNavClick = () => setMenuOpen(false);
-  const handleTeddyClick = () => setIsSplit(prev => !prev);
+  const handleTeddyClick = () => setIsSplit((prev) => !prev);
 
   // Skills array for About section
   const skills = [
@@ -52,11 +75,11 @@ export default function App() {
       />
 
       {/* Decorative Blobs */}
-      <div className="blob b1" aria-hidden="true"></div>
-      <div className="blob b2" aria-hidden="true"></div>
-      <div className="blob b3" aria-hidden="true"></div>
+      <div className="blob b1"></div>
+      <div className="blob b2"></div>
+      <div className="blob b3"></div>
 
-      {/* Corner Spray Effect */}
+      {/* Corner Spray */}
       <div className="corner-spray top-left">
         <div className="spray-particle heart">♡</div>
         <div className="spray-particle heart">♥</div>
@@ -91,7 +114,7 @@ export default function App() {
       </div>
 
       {/* Navbar */}
-      <nav className="navbar" role="navigation" aria-label="Main navigation">
+      <nav className="navbar">
         <div className="logo">Dakshinya</div>
 
         <button
@@ -106,10 +129,10 @@ export default function App() {
         </button>
 
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <li><a href="#home" onClick={handleNavClick}>Home</a></li>
-          <li><a href="#about" onClick={handleNavClick}>About</a></li>
-          <li><a href="#projects" onClick={handleNavClick}>Projects</a></li>
-          <li><a href="#contact" onClick={handleNavClick}>Contact</a></li>
+          <li><a href="#home" className={activeSection === "home" ? "active" : ""} onClick={handleNavClick}>Home</a></li>
+          <li><a href="#about" className={activeSection === "about" ? "active" : ""} onClick={handleNavClick}>About</a></li>
+          <li><a href="#projects" className={activeSection === "projects" ? "active" : ""} onClick={handleNavClick}>Projects</a></li>
+          <li><a href="#contact" className={activeSection === "contact" ? "active" : ""} onClick={handleNavClick}>Contact</a></li>
         </ul>
       </nav>
 
@@ -121,12 +144,11 @@ export default function App() {
             <h1><span>Dakshinya</span></h1>
             <p>Aesthetic Frontend Developer crafting smooth, soft, pastel-inspired web experiences.</p>
           </div>
-          <div className="hero-img" aria-hidden="false">
+          <div className="hero-img">
             <img src={DaksheeImg} alt="Dakshinya" />
           </div>
         </div>
       </section>
-      
 
       {/* About */}
       <section id="about" className="section">
@@ -142,7 +164,6 @@ export default function App() {
               </span>
             </p>
 
-            {/* Skills with theme tooltip (no browser tooltip) */}
             <div className="skills-minimal">
               {skills.map((skill, idx) => (
                 <span key={idx} data-name={skill.name}>
@@ -160,9 +181,7 @@ export default function App() {
           <h2>My Projects</h2>
 
           <div className="deck-with-teddy">
-            {/* Project Deck */}
             <div className={`project-deck ${isSplit ? "split" : ""}`}>
-              {/* Cards (card1–card5) */}
               <div className="project-card" id="card1">
                 <div className="card-content">
                   <h3>Portfolio Website</h3>
@@ -171,6 +190,7 @@ export default function App() {
                 </div>
                 <a href="https://dakshinya-mohanraj.github.io/portfolio/" target="_blank" rel="noreferrer" className="view-btn">View Live</a>
               </div>
+
               <div className="project-card" id="card2">
                 <div className="card-content">
                   <h3>Nail Glam Website</h3>
@@ -179,6 +199,7 @@ export default function App() {
                 </div>
                 <a href="https://dakshinya-mohanraj.github.io/nail-glam/" target="_blank" rel="noreferrer" className="view-btn">View Live</a>
               </div>
+
               <div className="project-card" id="card3">
                 <div className="card-content">
                   <h3>E-commerce Shop</h3>
@@ -187,6 +208,7 @@ export default function App() {
                 </div>
                 <a href="#" className="view-btn">View Live</a>
               </div>
+
               <div className="project-card" id="card4">
                 <div className="card-content">
                   <h3>Blog Platform</h3>
@@ -195,6 +217,7 @@ export default function App() {
                 </div>
                 <a href="#" className="view-btn">View Live</a>
               </div>
+
               <div className="project-card" id="card5">
                 <div className="card-content">
                   <h3>Weather App</h3>
@@ -205,7 +228,6 @@ export default function App() {
               </div>
             </div>
 
-            {/* Teddy */}
             <img src={TeddyGif} alt="Teddy" className="single-teddy" onClick={handleTeddyClick} />
             <p className="teddy-hint">Click me to split & stack 💗</p>
           </div>
@@ -217,33 +239,31 @@ export default function App() {
         <div className="contact-card">
           <h2 className="contact-title">Let's Connect</h2>
           <p className="contact-sub">I'm always open to collaboration & opportunities</p>
-          <div className="contact-icons">
-          <a 
-          href="https://mail.google.com/mail/?view=cm&fs=1&to=dakshee02@gmail.com" 
-          className="contact-orb" 
-          aria-label="Email"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-          <i className="fas fa-envelope"></i>
-          </a>
 
-            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" rel="noreferrer" className="contact-orb" aria-label="GitHub">
+          <div className="contact-icons">
+            <a 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=dakshee02@gmail.com"
+              className="contact-orb"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i className="fas fa-envelope"></i>
+            </a>
+
+            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" rel="noreferrer" className="contact-orb">
               <i className="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" rel="noreferrer" className="contact-orb" aria-label="LinkedIn">
+
+            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" rel="noreferrer" className="contact-orb">
               <i className="fab fa-linkedin"></i>
             </a>
           </div>
         </div>
       </section>
 
-      <div className="bg-name" aria-hidden="true">
-        DAKSHINYA <br /> MOHAN RAJ
-      </div>
+      <div className="bg-name">DAKSHINYA <br /> MOHAN RAJ</div>
 
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
     </>
   );
 }
-
