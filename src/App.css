@@ -522,4 +522,28 @@ transition: all 0.3s ease;
     font-family: sans-serif;
   }
   
+  .pixel-navbar a {
+    color: #ccc;
+    text-decoration: none;
+    padding: 5px 10px;
+    position: relative;
+    transition: 0.3s ease;
+  }
+  
+  .pixel-navbar a.active {
+    color: var(--peach); /* highlight color */
+  }
+  
+  /* Underline bar */
+  .pixel-navbar a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--peach2), var(--peach));
+    box-shadow: 0 0 8px var(--peach);
+    border-radius: 10px;
+  }
   
