@@ -1,39 +1,35 @@
 // src/App.jsx
 import React, { useState, useEffect } from "react";
 import DaksheeImg from "./assets/Dakshee.png";
-import TeddyGif from "./assets/teddy.gif";   // Place your teddy GIF here
+import TeddyGif from "./assets/teddy.gif";
 import "./App.css";
+import MemoryGame from "./MemoryGame.jsx";
 
 export default function App() {
+  const [gameCompleted, setGameCompleted] = useState(false); // 🔑 controls unlock
   const [isSplit, setIsSplit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // 🔥 Active Page Indicator State
   const [activeSection, setActiveSection] = useState("home");
 
-  // 🔥 Active Section Scroll Logic
+  // Scroll active section
   useEffect(() => {
     const sections = document.querySelectorAll("section, .contact-section");
-
     const handleScroll = () => {
       const scrollPos = window.scrollY;
-
       sections.forEach((sec) => {
         const offset = sec.offsetTop - 200;
         const height = sec.offsetHeight;
         const id = sec.getAttribute("id");
-
         if (scrollPos >= offset && scrollPos < offset + height) {
           setActiveSection(id);
         }
       });
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when resizing to desktop
+  // Close menu on resize
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 768 && menuOpen) setMenuOpen(false);
@@ -45,7 +41,7 @@ export default function App() {
   const handleNavClick = () => setMenuOpen(false);
   const handleTeddyClick = () => setIsSplit((prev) => !prev);
 
-  // Skills array for About section
+  // Skills
   const skills = [
     { name: "HTML5", icon: <i className="fab fa-html5"></i> },
     { name: "CSS3", icon: <i className="fab fa-css3-alt"></i> },
@@ -62,6 +58,16 @@ export default function App() {
     { name: "Firebase", icon: <i className="fas fa-fire-alt"></i> },
   ];
 
+  // -----------------------------
+  // 🔥 SHOW GAME FIRST, PORTFOLIO AFTER UNLOCK
+  // -----------------------------
+  if (!gameCompleted) {
+    return <MemoryGame onComplete={() => setGameCompleted(true)} />;
+  }
+
+  // -----------------------------
+  // ⭐ PORTFOLIO CONTENT
+  // -----------------------------
   return (
     <>
       {/* Fonts & Icons */}
@@ -79,55 +85,17 @@ export default function App() {
       <div className="blob b2"></div>
       <div className="blob b3"></div>
 
-      {/* Corner Spray */}
-      <div className="corner-spray top-left">
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle heart">♥</div>
-        <div className="spray-particle sparkle"></div>
-        <div className="spray-particle heart">✧</div>
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle sparkle"></div>
-      </div>
-      <div className="corner-spray top-right">
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle heart">♥</div>
-        <div className="spray-particle sparkle"></div>
-        <div className="spray-particle heart">✧</div>
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle sparkle"></div>
-      </div>
-      <div className="corner-spray bottom-left">
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle heart">♥</div>
-        <div className="spray-particle sparkle"></div>
-        <div className="spray-particle heart">✧</div>
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle sparkle"></div>
-      </div>
-      <div className="corner-spray bottom-right">
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle heart">♥</div>
-        <div className="spray-particle sparkle"></div>
-        <div className="spray-particle heart">✧</div>
-        <div className="spray-particle heart">♡</div>
-        <div className="spray-particle sparkle"></div>
-      </div>
-
       {/* Navbar */}
       <nav className="navbar">
         <div className="logo">Dakshinya</div>
-
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
           onClick={() => setMenuOpen((s) => !s)}
         >
           <span className="line"></span>
           <span className="line"></span>
           <span className="line"></span>
         </button>
-
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           <li><a href="#home" className={activeSection === "home" ? "active" : ""} onClick={handleNavClick}>Home</a></li>
           <li><a href="#about" className={activeSection === "about" ? "active" : ""} onClick={handleNavClick}>About</a></li>
@@ -136,13 +104,13 @@ export default function App() {
         </ul>
       </nav>
 
-      {/* Hero */}
+      {/* HERO */}
       <section id="home" className="section">
         <div className="hero-wrapper">
           <div className="hero-content">
-            <h1>Hello, I'm </h1>
+            <h1>Hello, I'm</h1>
             <h1><span>Dakshinya</span></h1>
-            <p>Aesthetic Frontend Developer crafting smooth, soft, pastel-inspired web experiences.</p>
+            <p>Aesthetic Frontend Developer crafting smooth, pastel-inspired experiences.</p>
           </div>
           <div className="hero-img">
             <img src={DaksheeImg} alt="Dakshinya" />
@@ -150,38 +118,25 @@ export default function App() {
         </div>
       </section>
 
-      {/* About */}
+      {/* ABOUT */}
       <section id="about" className="section">
         <div className="about-minimal">
           <h2>About Me</h2>
           <div className="about-content">
-            <p className="lead">
-              I’m a passionate B.E. Computer Science and Engineering student specializing in frontend development.
-            </p>
-            <p>
-              <span className="soft-highlight">
-                Currently building with <strong>React + Vite</strong> for instant performance.
-              </span>
-            </p>
-
-            <div className="skills-minimal">
-              {skills.map((skill, idx) => (
-                <span key={idx} data-name={skill.name}>
-                  {skill.icon}
-                </span>
-              ))}
-            </div>
+            <p className="lead">I’m a passionate B.E. CSE student specializing in frontend development.</p>
+            <p><span className="soft-highlight">Currently building with <strong>React + Vite</strong>.</span></p>
+            <div className="skills-minimal">{skills.map((skill, idx) => <span key={idx}>{skill.icon}</span>)}</div>
           </div>
         </div>
       </section>
 
-      {/* Projects */}
+      {/* PROJECTS */}
       <section id="projects" className="section">
         <div className="projects-minimal">
           <h2>My Projects</h2>
-
           <div className="deck-with-teddy">
             <div className={`project-deck ${isSplit ? "split" : ""}`}>
+              {/* 5 Project Cards */}
               <div className="project-card" id="card1">
                 <div className="card-content">
                   <h3>Portfolio Website</h3>
@@ -190,7 +145,6 @@ export default function App() {
                 </div>
                 <a href="https://dakshinya-mohanraj.github.io/portfolio/" target="_blank" rel="noreferrer" className="view-btn">View Live</a>
               </div>
-
               <div className="project-card" id="card2">
                 <div className="card-content">
                   <h3>Nail Glam Website</h3>
@@ -199,7 +153,6 @@ export default function App() {
                 </div>
                 <a href="https://dakshinya-mohanraj.github.io/nail-glam/" target="_blank" rel="noreferrer" className="view-btn">View Live</a>
               </div>
-
               <div className="project-card" id="card3">
                 <div className="card-content">
                   <h3>E-commerce Shop</h3>
@@ -208,7 +161,6 @@ export default function App() {
                 </div>
                 <a href="#" className="view-btn">View Live</a>
               </div>
-
               <div className="project-card" id="card4">
                 <div className="card-content">
                   <h3>Blog Platform</h3>
@@ -217,7 +169,6 @@ export default function App() {
                 </div>
                 <a href="#" className="view-btn">View Live</a>
               </div>
-
               <div className="project-card" id="card5">
                 <div className="card-content">
                   <h3>Weather App</h3>
@@ -234,34 +185,22 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact */}
+      {/* CONTACT */}
       <section id="contact" className="contact-section">
         <div className="contact-card">
           <h2 className="contact-title">Let's Connect</h2>
           <p className="contact-sub">I'm always open to collaboration & opportunities</p>
-
           <div className="contact-icons">
-            <a 
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=dakshee02@gmail.com"
-              className="contact-orb"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fas fa-envelope"></i>
-            </a>
-
-            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" rel="noreferrer" className="contact-orb">
-              <i className="fab fa-github"></i>
-            </a>
-
-            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" rel="noreferrer" className="contact-orb">
-              <i className="fab fa-linkedin"></i>
-            </a>
+            <a href="mailto:dakshee02@gmail.com" className="contact-orb"><i className="fas fa-envelope"></i></a>
+            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" className="contact-orb"><i className="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" className="contact-orb"><i className="fab fa-linkedin"></i></a>
           </div>
         </div>
       </section>
 
-      <div className="bg-name">DAKSHINYA <br /> MOHAN RAJ</div>
+      <div className="bg-name">
+        DAKSHINYA <br /> MOHAN RAJ
+      </div>
 
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
     </>
