@@ -276,9 +276,6 @@ gap: 1vw; /* previously 2vw */
   .hero-img img { width: 100%; height: 90%; border-radius: 100%; object-fit: cover; }
 
   #home.section { padding-bottom: 0px !important; }
-
-
-
 /* Hero wrapper adjustments */
 #home .hero-wrapper {
 display: flex;
@@ -299,8 +296,6 @@ text-align: center; /* centre text for home page */
 }
 
 /* Hero image */
-
-
   /* Titles */
   .about-minimal h2, .projects-minimal h2, .contact-title {
     font-family: "Sacramento", cursive;
@@ -327,11 +322,75 @@ text-align: center; /* centre text for home page */
     -webkit-text-fill-color: transparent;
     font-weight: 700;
   }
-  .skills-minimal {
-    display: flex; flex-wrap: wrap; justify-content: center;
-    gap: 28px; margin-top: 40px; padding-top: 30px;
-    border-top: 1.5px solid rgba(255,145,120,0.3);
-  }
+  /* Skills Container */
+.skills-minimal {
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center;
+  gap: 28px; 
+  margin-top: 40px; 
+  padding-top: 30px;
+  border-top: 1.5px solid rgba(255,145,120,0.3);
+}
+
+/* Skill Card Wrapper */
+/* Skill Card Wrapper */
+.skill-card {
+  width: 90px; 
+  height: 90px; 
+  perspective: 1000px; /* 3D effect */
+}
+
+.skill-inner {
+  width: 100%; 
+  height: 100%; 
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease; /* 🔥 Slower flip */
+  cursor: pointer;
+}
+
+/* Flip on hover */
+.skill-card:hover .skill-inner {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back faces */
+.skill-front, .skill-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px; /* 🔥 Bigger icon */
+  backface-visibility: hidden;
+  transition: all 0.6s ease;
+}
+
+/* Front glass look */
+.skill-front {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(204, 62, 88, 0.15);
+  color: #e98470;
+}
+
+/* Back with gradient name */
+.skill-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #ff8d75, #ffb19c);
+  color: white;
+  font-weight: 700;
+  font-size: 16px; /* Slightly bigger text */
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(234, 136, 116, 0.4);
+}
+
+
+  
   .skills-minimal span {
     width: 70px; height: 70px;
     background: rgba(252, 137, 114, 0.15);
