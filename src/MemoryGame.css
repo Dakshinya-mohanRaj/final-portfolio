@@ -1,61 +1,190 @@
+:root {
+    --accent: #de270b;          /* main portfolio pink-red */
+    --accent-dark: #f86724c4;   /* darker shade */
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.25);
+}
+
+/* 🔥 Full Background Gradient */
+body {
+    background: linear-gradient(
+        135deg,
+        #ff7c9f,
+        #ff9d6b,
+        #de70ff,
+        #ff4d6d
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Game Container */
 .game-container {
     text-align: center;
     padding: 30px;
-  }
-  
-  .title {
+}
+
+/* Title */
+.title {
     font-size: 2rem;
     font-weight: bold;
-    color: #ff7b7b;
-    margin-bottom: 20px;
-  }
-  
-  .reset-btn {
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+/* Timer */
+.timer {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--accent-dark);
+    margin-bottom: 15px;
+}
+
+/* Restart Button */
+.reset-btn {
     padding: 10px 20px;
     margin-bottom: 25px;
     border: none;
-    background: #ff5070;
+    background: var(--accent);
     color: white;
     font-size: 1rem;
     border-radius: 10px;
     cursor: pointer;
-  }
-  
-  .card-grid {
+    box-shadow: 0 6px 18px rgba(255, 77, 109, 0.25);
+    transition: 0.3s;
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 77, 109, 0.35);
+}
+
+/* Card Grid */
+.card-grid {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    gap: 15px;
+    grid-template-columns: repeat(4, 110px);
+    gap: 60px;
     justify-content: center;
-  }
-  
-  .card {
-    width: 100px;
-    height: 100px;
+}
+
+/* Card */
+.card {
+    width: 110px;
+    height: 110px;
     position: relative;
     cursor: pointer;
     transform-style: preserve-3d;
-    transition: transform 0.4s;
-  }
-  
-  .card.flipped {
+    transition: transform 0.4s ease;
+}
+
+.card.flipped {
     transform: rotateY(180deg);
-  }
-  
-  .card img,
-  .card .back {
+}
+
+.card img,
+.card .back {
     width: 100%;
     height: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     position: absolute;
     backface-visibility: hidden;
-  }
-  
-  .back {
-    background: #222;
+}
+
+/* 🔥 GLASS BACK */
+.back {
     transform: rotateY(0deg);
-  }
-  
-  .front {
+    border-radius: 12px;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(204, 62, 88, 0.15);
+}
+
+/* Front Image */
+.front {
     transform: rotateY(180deg);
-  }
-  
+    border-radius: 12px;
+}
+
+/* YOU WIN message at bottom */
+.you-win-message {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    background: var(--accent);
+    padding: 12px 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 22px rgba(255, 77, 109, 0.35);
+    animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* POPUP (if needed later) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+    z-index: 999;
+}
+
+.popup-box {
+    background: white;
+    padding: 30px 50px;
+    font-size: 2rem;
+    border-radius: 20px;
+    color: var(--accent);
+    font-weight: bold;
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(0.5); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Welcome Screen (after win before portfolio) */
+.welcome-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #be5383;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: white;
+    z-index: 1000;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
