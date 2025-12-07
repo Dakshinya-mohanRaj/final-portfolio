@@ -125,10 +125,20 @@ export default function App() {
           <div className="about-content">
             <p className="lead">I’m a passionate B.E. CSE student specializing in frontend development.</p>
             <p><span className="soft-highlight">Currently building with <strong>React + Vite</strong>.</span></p>
-            <div className="skills-minimal">{skills.map((skill, idx) => <span key={idx}>{skill.icon}</span>)}</div>
+            <div className="skills-minimal">
+              {skills.map((skill, idx) => (
+                <div className="skill-card" key={idx}>
+                  <div className="skill-inner">
+                    <div className="skill-front">{skill.icon}</div>
+                    <div className="skill-back">{skill.name}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* PROJECTS */}
       <section id="projects" className="section">
