@@ -16,6 +16,11 @@ export default function MemoryGame({ onComplete }) {
   const [secondCard, setSecondCard] = useState(null);
   const [disabled, setDisabled] = useState(false);
 
+  const [timeLeft, setTimeLeft] = useState(100);
+  const [timerActive, setTimerActive] = useState(true);
+
+  const [gameWon, setGameWon] = useState(false); // 👈 NEW
+
   // Shuffle cards
   const shuffleCards = () => {
     const shuffled = [...cardImages, ...cardImages]
@@ -25,14 +30,31 @@ export default function MemoryGame({ onComplete }) {
     setCards(shuffled);
     setFirstCard(null);
     setSecondCard(null);
+    setDisabled(false);
+
+    setTimeLeft(100);
+    setTimerActive(true);
+    setGameWon(false); // reset win status
   };
 
-  // Run once on start
   useEffect(() => {
     shuffleCards();
   }, []);
 
-  // Checking if two cards match
+  // Timer Logic
+  useEffect(() => {
+    if (timerActive && timeLeft > 0) {
+      const t = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
+      return () => clearTimeout(t);
+    }
+
+    if (timeLeft === 0) {
+      alert("⏰ Time's up! Restarting game...");
+      shuffleCards();
+    }
+  }, [timeLeft, timerActive]);
+
+  // Matching Logic
   useEffect(() => {
     if (firstCard && secondCard) {
       setDisabled(true);
@@ -50,17 +72,25 @@ export default function MemoryGame({ onComplete }) {
     }
   }, [firstCard, secondCard]);
 
-  // Detecting game completion
+  // Detect Game Win
   useEffect(() => {
     if (cards.length > 0 && cards.every((card) => card.matched)) {
-      onComplete(); // Unlock the portfolio 🔥
+      setTimerActive(false);
+      setGameWon(true);
+
+      // 👇 Auto open portfolio after 1.5 sec
+      setTimeout(() => {
+        onComplete();   // 🔥 switches to your portfolio correctly
+      }, 1500);
+      
     }
   }, [cards]);
 
   const handleClick = (card) => {
-    if (!disabled) {
-      firstCard ? setSecondCard(card) : setFirstCard(card);
-    }
+    if (disabled) return;
+    if (card === firstCard) return;
+
+    firstCard ? setSecondCard(card) : setFirstCard(card);
   };
 
   const resetTurn = () => {
@@ -71,7 +101,9 @@ export default function MemoryGame({ onComplete }) {
 
   return (
     <div className="game-container">
-      <h2 className="title">Complete the Game to Enter</h2>
+      <h2 className="title">Complete the Game to Enter Portfolio </h2>
+
+      <h3 className="timer">⏱ Time Left: {timeLeft}s</h3>
 
       <button className="reset-btn" onClick={shuffleCards}>
         Restart Game
@@ -93,6 +125,9 @@ export default function MemoryGame({ onComplete }) {
           </div>
         ))}
       </div>
+
+      {/* ⭐ YOU WIN MESSAGE AT BOTTOM */}
+      {gameWon && <div className="you-win-message">🎉 You Win! Opening Portfolio...</div>}
     </div>
   );
 }
