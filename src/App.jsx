@@ -6,30 +6,12 @@ import "./App.css";
 import MemoryGame from "./MemoryGame.jsx";
 
 export default function App() {
-  const [gameCompleted, setGameCompleted] = useState(false); // 🔑 controls unlock
+  const [gameCompleted, setGameCompleted] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Scroll active section
-  useEffect(() => {
-    const sections = document.querySelectorAll("section, .contact-section");
-    const handleScroll = () => {
-      const scrollPos = window.scrollY;
-      sections.forEach((sec) => {
-        const offset = sec.offsetTop - 200;
-        const height = sec.offsetHeight;
-        const id = sec.getAttribute("id");
-        if (scrollPos >= offset && scrollPos < offset + height) {
-          setActiveSection(id);
-        }
-      });
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Close menu on resize
+  // Close mobile menu on resize
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 768 && menuOpen) setMenuOpen(false);
@@ -38,7 +20,39 @@ export default function App() {
     return () => window.removeEventListener("resize", onResize);
   }, [menuOpen]);
 
-  const handleNavClick = () => setMenuOpen(false);
+  // ⭐ CLICK NAVIGATION
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    setActiveSection(id);
+    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    setMenuOpen(false);
+  };
+
+  // ⭐ SCROLL DETECTOR FOR AUTO-HIGHLIGHT
+  useEffect(() => {
+    const sectionIds = ["home", "about", "projects", "contact"];
+
+    const handleScroll = () => {
+      let current = "home";
+
+      sectionIds.forEach((id) => {
+        const sec = document.getElementById(id);
+        if (!sec) return;
+
+        const rect = sec.getBoundingClientRect();
+
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          current = id;
+        }
+      });
+
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleTeddyClick = () => setIsSplit((prev) => !prev);
 
   // Skills
@@ -58,19 +72,15 @@ export default function App() {
     { name: "Firebase", icon: <i className="fas fa-fire-alt"></i> },
   ];
 
-  // -----------------------------
-  // 🔥 SHOW GAME FIRST, PORTFOLIO AFTER UNLOCK
-  // -----------------------------
+  // Show game first
   if (!gameCompleted) {
     return <MemoryGame onComplete={() => setGameCompleted(true)} />;
   }
 
-  // -----------------------------
-  // ⭐ PORTFOLIO CONTENT
-  // -----------------------------
+  // Portfolio Content
   return (
     <>
-      {/* Fonts & Icons */}
+      {/* Fonts */}
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap"
         rel="stylesheet"
@@ -80,14 +90,15 @@ export default function App() {
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
       />
 
-      {/* Decorative Blobs */}
+      {/* Blobs */}
       <div className="blob b1"></div>
       <div className="blob b2"></div>
       <div className="blob b3"></div>
 
-      {/* Navbar */}
+      {/* ⭐ NAVBAR WITH ACTIVE HIGHLIGHT */}
       <nav className="navbar">
         <div className="logo">Dakshinya</div>
+
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
           onClick={() => setMenuOpen((s) => !s)}
@@ -96,11 +107,47 @@ export default function App() {
           <span className="line"></span>
           <span className="line"></span>
         </button>
+
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          <li><a href="#home" className={activeSection === "home" ? "active" : ""} onClick={handleNavClick}>Home</a></li>
-          <li><a href="#about" className={activeSection === "about" ? "active" : ""} onClick={handleNavClick}>About</a></li>
-          <li><a href="#projects" className={activeSection === "projects" ? "active" : ""} onClick={handleNavClick}>Projects</a></li>
-          <li><a href="#contact" className={activeSection === "contact" ? "active" : ""} onClick={handleNavClick}>Contact</a></li>
+          <li>
+            <a
+              href="#home"
+              className={activeSection === "home" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "home")}
+            >
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#about"
+              className={activeSection === "about" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "about")}
+            >
+              About
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#projects"
+              className={activeSection === "projects" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "projects")}
+            >
+              Projects
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#contact"
+              className={activeSection === "contact" ? "active" : ""}
+              onClick={(e) => handleNavClick(e, "contact")}
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -109,8 +156,10 @@ export default function App() {
         <div className="hero-wrapper">
           <div className="hero-content">
             <h1>Hello, I'm</h1>
-            <h1><span>Dakshinya</span></h1>
-            <p>Aesthetic Frontend Developer crafting smooth, pastel-inspired experiences.</p>
+            <h1>
+              <span>Dakshinya</span>
+            </h1>
+            <p>Aesthetic Frontend Developer crafting smooth, pastel experiences.</p>
           </div>
           <div className="hero-img">
             <img src={DaksheeImg} alt="Dakshinya" />
@@ -118,13 +167,19 @@ export default function App() {
         </div>
       </section>
 
-      {/* ABOUT */}
+      {/* ABOUT (YOUR CONTAINER KEPT SAME) */}
       <section id="about" className="section">
         <div className="about-minimal">
           <h2>About Me</h2>
+
           <div className="about-content">
             <p className="lead">I’m a passionate B.E. CSE student specializing in frontend development.</p>
-            <p><span className="soft-highlight">Currently building with <strong>React + Vite</strong>.</span></p>
+            <p>
+              <span className="soft-highlight">
+                Currently building with <strong>React + Vite</strong>.
+              </span>
+            </p>
+
             <div className="skills-minimal">
               {skills.map((skill, idx) => (
                 <div className="skill-card" key={idx}>
@@ -139,57 +194,83 @@ export default function App() {
         </div>
       </section>
 
-
       {/* PROJECTS */}
       <section id="projects" className="section">
         <div className="projects-minimal">
           <h2>My Projects</h2>
+
           <div className="deck-with-teddy">
             <div className={`project-deck ${isSplit ? "split" : ""}`}>
-              {/* 5 Project Cards */}
               <div className="project-card" id="card1">
                 <div className="card-content">
                   <h3>Portfolio Website</h3>
                   <p>A soft, aesthetic personal site with smooth animations.</p>
                   <span className="tech">React • Vite • CSS</span>
                 </div>
-                <a href="https://dakshinya-mohanraj.github.io/portfolio/" target="_blank" rel="noreferrer" className="view-btn">View Live</a>
+                <a
+                  href="https://dakshinya-mohanraj.github.io/portfolio/"
+                  target="_blank"
+                  className="view-btn"
+                >
+                  View Live
+                </a>
               </div>
+
               <div className="project-card" id="card2">
                 <div className="card-content">
                   <h3>Nail Glam Website</h3>
-                  <p>Real-time todo app with drag & drop, Firebase sync.</p>
-                  <span className="tech">HTML / CSS • Firebase</span>
+                  <p>Real-time todo app with drag & drop + Firebase sync.</p>
+                  <span className="tech">HTML • CSS • Firebase</span>
                 </div>
-                <a href="https://dakshinya-mohanraj.github.io/nail-glam/" target="_blank" rel="noreferrer" className="view-btn">View Live</a>
+                <a
+                  href="https://dakshinya-mohanraj.github.io/nail-glam/"
+                  target="_blank"
+                  className="view-btn"
+                >
+                  View Live
+                </a>
               </div>
+
               <div className="project-card" id="card3">
                 <div className="card-content">
                   <h3>E-commerce Shop</h3>
-                  <p>A modern e-commerce site with shopping cart functionality.</p>
+                  <p>A modern online shop with cart functionality.</p>
                   <span className="tech">React • Redux • Stripe</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a href="#" className="view-btn">
+                  View Live
+                </a>
               </div>
+
               <div className="project-card" id="card4">
                 <div className="card-content">
                   <h3>Blog Platform</h3>
-                  <p>A blogging platform with user authentication & comments.</p>
+                  <p>A blog with user auth + comments.</p>
                   <span className="tech">Next.js • MongoDB • Tailwind</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a href="#" className="view-btn">
+                  View Live
+                </a>
               </div>
+
               <div className="project-card" id="card5">
                 <div className="card-content">
                   <h3>Weather App</h3>
-                  <p>Live weather forecasts with geolocation and API integration.</p>
-                  <span className="tech">React • OpenWeather API • CSS</span>
+                  <p>Live weather + geolocation + API.</p>
+                  <span className="tech">React • OpenWeather API</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a href="#" className="view-btn">
+                  View Live
+                </a>
               </div>
             </div>
 
-            <img src={TeddyGif} alt="Teddy" className="single-teddy" onClick={handleTeddyClick} />
+            <img
+              src={TeddyGif}
+              alt="Teddy"
+              className="single-teddy"
+              onClick={handleTeddyClick}
+            />
             <p className="teddy-hint">Click me to split & stack 💗</p>
           </div>
         </div>
@@ -200,10 +281,25 @@ export default function App() {
         <div className="contact-card">
           <h2 className="contact-title">Let's Connect</h2>
           <p className="contact-sub">I'm always open to collaboration & opportunities</p>
+
           <div className="contact-icons">
-            <a href="mailto:dakshee02@gmail.com" className="contact-orb"><i className="fas fa-envelope"></i></a>
-            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" className="contact-orb"><i className="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" className="contact-orb"><i className="fab fa-linkedin"></i></a>
+            <a href="mailto:dakshee02@gmail.com" className="contact-orb">
+              <i className="fas fa-envelope"></i>
+            </a>
+            <a
+              href="https://github.com/Dakshinya-mohanRaj"
+              target="_blank"
+              className="contact-orb"
+            >
+              <i className="fab fa-github"></i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/"
+              target="_blank"
+              className="contact-orb"
+            >
+              <i className="fab fa-linkedin"></i>
+            </a>
           </div>
         </div>
       </section>
