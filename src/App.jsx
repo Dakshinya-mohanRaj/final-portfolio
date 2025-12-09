@@ -187,7 +187,14 @@ export default function App() {
                   <p>A soft, aesthetic personal site with smooth animations.</p>
                   <span className="tech">React • Vite • CSS</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a
+                  href="https://final-portfolio-rouge-five.vercel.app/"
+                  className="view-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Live
+                </a>
               </div>
 
               {/* CARD 2 */}
@@ -197,7 +204,14 @@ export default function App() {
                   <p>Beauty service website with responsive UI.</p>
                   <span className="tech">HTML • CSS • Firebase</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a
+                  href="https://dakshinya-mohanraj.github.io/nail-glam/"
+                  className="view-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Live
+                </a>
               </div>
 
               {/* CARD 3 */}
@@ -207,7 +221,14 @@ export default function App() {
                   <p>A modern online shop with cart functionality.</p>
                   <span className="tech">React • Redux</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a
+                  href="#"
+                  className="view-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Live
+                </a>
               </div>
 
               {/* CARD 4 */}
@@ -217,7 +238,14 @@ export default function App() {
                   <p>Users can write, edit & comment on blogs.</p>
                   <span className="tech">Next.js • MongoDB</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a
+                  href="#"
+                  className="view-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Live
+                </a>
               </div>
 
               {/* CARD 5 */}
@@ -227,7 +255,14 @@ export default function App() {
                   <p>Live weather updates using OpenWeather API.</p>
                   <span className="tech">React • API</span>
                 </div>
-                <a href="#" className="view-btn">View Live</a>
+                <a
+                  href="#"
+                  className="view-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Live
+                </a>
               </div>
 
             </div>
@@ -253,10 +288,20 @@ export default function App() {
             <a href="mailto:dakshee02@gmail.com" className="contact-orb">
               <i className="fas fa-envelope"></i>
             </a>
-            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" className="contact-orb">
+            <a
+              href="https://github.com/Dakshinya-mohanRaj"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-orb"
+            >
               <i className="fab fa-github"></i>
             </a>
-            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" className="contact-orb">
+            <a
+              href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-orb"
+            >
               <i className="fab fa-linkedin"></i>
             </a>
           </div>
