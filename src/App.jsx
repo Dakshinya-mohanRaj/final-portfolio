@@ -3,15 +3,12 @@ import React, { useState, useEffect } from "react";
 import DaksheeImg from "./assets/Dakshee.png";
 import TeddyGif from "./assets/teddy.gif";
 import "./App.css";
-import MemoryGame from "./MemoryGame.jsx";
 
 export default function App() {
-  const [gameCompleted, setGameCompleted] = useState(false);
   const [isSplit, setIsSplit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // Close mobile menu on resize
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth > 768 && menuOpen) setMenuOpen(false);
@@ -20,7 +17,6 @@ export default function App() {
     return () => window.removeEventListener("resize", onResize);
   }, [menuOpen]);
 
-  // ⭐ CLICK NAVIGATION
   const handleNavClick = (e, id) => {
     e.preventDefault();
     setActiveSection(id);
@@ -28,24 +24,17 @@ export default function App() {
     setMenuOpen(false);
   };
 
-  // ⭐ SCROLL DETECTOR FOR AUTO-HIGHLIGHT
   useEffect(() => {
     const sectionIds = ["home", "about", "projects", "contact"];
 
     const handleScroll = () => {
       let current = "home";
-
       sectionIds.forEach((id) => {
         const sec = document.getElementById(id);
         if (!sec) return;
-
         const rect = sec.getBoundingClientRect();
-
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          current = id;
-        }
+        if (rect.top <= 150 && rect.bottom >= 150) current = id;
       });
-
       setActiveSection(current);
     };
 
@@ -55,7 +44,6 @@ export default function App() {
 
   const handleTeddyClick = () => setIsSplit((prev) => !prev);
 
-  // Skills
   const skills = [
     { name: "HTML5", icon: <i className="fab fa-html5"></i> },
     { name: "CSS3", icon: <i className="fab fa-css3-alt"></i> },
@@ -72,15 +60,8 @@ export default function App() {
     { name: "Firebase", icon: <i className="fas fa-fire-alt"></i> },
   ];
 
-  // Show game first
-  if (!gameCompleted) {
-    return <MemoryGame onComplete={() => setGameCompleted(true)} />;
-  }
-
-  // Portfolio Content
   return (
     <>
-      {/* Fonts */}
       <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap"
         rel="stylesheet"
@@ -95,13 +76,13 @@ export default function App() {
       <div className="blob b2"></div>
       <div className="blob b3"></div>
 
-      {/* ⭐ NAVBAR WITH ACTIVE HIGHLIGHT */}
+      {/* NAVBAR */}
       <nav className="navbar">
         <div className="logo">Dakshinya</div>
 
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
-          onClick={() => setMenuOpen((s) => !s)}
+          onClick={() => setMenuOpen(!menuOpen)}
         >
           <span className="line"></span>
           <span className="line"></span>
@@ -118,7 +99,6 @@ export default function App() {
               Home
             </a>
           </li>
-
           <li>
             <a
               href="#about"
@@ -128,7 +108,6 @@ export default function App() {
               About
             </a>
           </li>
-
           <li>
             <a
               href="#projects"
@@ -138,7 +117,6 @@ export default function App() {
               Projects
             </a>
           </li>
-
           <li>
             <a
               href="#contact"
@@ -167,7 +145,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* ABOUT (YOUR CONTAINER KEPT SAME) */}
+      {/* ABOUT */}
       <section id="about" className="section">
         <div className="about-minimal">
           <h2>About Me</h2>
@@ -201,68 +179,57 @@ export default function App() {
 
           <div className="deck-with-teddy">
             <div className={`project-deck ${isSplit ? "split" : ""}`}>
+
+              {/* CARD 1 */}
               <div className="project-card" id="card1">
                 <div className="card-content">
                   <h3>Portfolio Website</h3>
                   <p>A soft, aesthetic personal site with smooth animations.</p>
                   <span className="tech">React • Vite • CSS</span>
                 </div>
-                <a
-                  href="https://dakshinya-mohanraj.github.io/portfolio/"
-                  target="_blank"
-                  className="view-btn"
-                >
-                  View Live
-                </a>
+                <a href="#" className="view-btn">View Live</a>
               </div>
 
+              {/* CARD 2 */}
               <div className="project-card" id="card2">
                 <div className="card-content">
                   <h3>Nail Glam Website</h3>
-                  <p>Real-time todo app with drag & drop + Firebase sync.</p>
+                  <p>Beauty service website with responsive UI.</p>
                   <span className="tech">HTML • CSS • Firebase</span>
                 </div>
-                <a
-                  href="https://dakshinya-mohanraj.github.io/nail-glam/"
-                  target="_blank"
-                  className="view-btn"
-                >
-                  View Live
-                </a>
+                <a href="#" className="view-btn">View Live</a>
               </div>
 
+              {/* CARD 3 */}
               <div className="project-card" id="card3">
                 <div className="card-content">
                   <h3>E-commerce Shop</h3>
                   <p>A modern online shop with cart functionality.</p>
-                  <span className="tech">React • Redux • Stripe</span>
+                  <span className="tech">React • Redux</span>
                 </div>
-                <a href="#" className="view-btn">
-                  View Live
-                </a>
+                <a href="#" className="view-btn">View Live</a>
               </div>
 
+              {/* CARD 4 */}
               <div className="project-card" id="card4">
                 <div className="card-content">
                   <h3>Blog Platform</h3>
-                  <p>A blog with user auth + comments.</p>
-                  <span className="tech">Next.js • MongoDB • Tailwind</span>
+                  <p>Users can write, edit & comment on blogs.</p>
+                  <span className="tech">Next.js • MongoDB</span>
                 </div>
-                <a href="#" className="view-btn">
-                  View Live
-                </a>
+                <a href="#" className="view-btn">View Live</a>
               </div>
 
+              {/* CARD 5 */}
               <div className="project-card" id="card5">
                 <div className="card-content">
                   <h3>Weather App</h3>
-                  <p>Live weather + geolocation + API.</p>
-                  <span className="tech">React • OpenWeather API</span>
+                  <p>Live weather updates using OpenWeather API.</p>
+                  <span className="tech">React • API</span>
                 </div>
-                <a href="#" className="view-btn">
-                  View Live
-                </a>
+                <a href="#" className="view-btn">View Live</a>
               </div>
+
             </div>
 
             <img
@@ -286,27 +253,17 @@ export default function App() {
             <a href="mailto:dakshee02@gmail.com" className="contact-orb">
               <i className="fas fa-envelope"></i>
             </a>
-            <a
-              href="https://github.com/Dakshinya-mohanRaj"
-              target="_blank"
-              className="contact-orb"
-            >
+            <a href="https://github.com/Dakshinya-mohanRaj" target="_blank" className="contact-orb">
               <i className="fab fa-github"></i>
             </a>
-            <a
-              href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/"
-              target="_blank"
-              className="contact-orb"
-            >
+            <a href="https://www.linkedin.com/in/dakshinya-mohan-raj-6a311732b/" target="_blank" className="contact-orb">
               <i className="fab fa-linkedin"></i>
             </a>
           </div>
         </div>
       </section>
 
-      <div className="bg-name">
-        DAKSHINYA <br /> MOHAN RAJ
-      </div>
+      <div className="bg-name">DAKSHINYA<br />MOHAN RAJ</div>
 
       <footer>© 2025 Dakshinya — All Rights Reserved</footer>
     </>
