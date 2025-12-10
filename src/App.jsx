@@ -137,7 +137,7 @@ export default function App() {
             <h1>
               <span>Dakshinya</span>
             </h1>
-            <p>Aesthetic Frontend Developer crafting smooth, pastel experiences.</p>
+            <p>Aesthetic Frontend Developer crafting smooth, pastel experiences, creating calm and clean interfaces that feel soft and effortlessly modern.</p>
           </div>
           <div className="hero-img">
             <img src={DaksheeImg} alt="Dakshinya" />
@@ -151,7 +151,7 @@ export default function App() {
           <h2>About Me</h2>
 
           <div className="about-content">
-            <p className="lead">I’m a passionate B.E. CSE student specializing in frontend development.</p>
+            <p className="lead">I’m a passionate B.E. CSE student specializing in frontend development, dedicated to crafting clean, modern, and visually immersive user experiences.</p>
             <p>
               <span className="soft-highlight">
                 Currently building with <strong>React + Vite</strong>.
