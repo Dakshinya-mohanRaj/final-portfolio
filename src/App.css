@@ -1,7 +1,7 @@
  
   :root {
     --peach: rgb(251, 230, 223);
-    --peach2: rgb(242, 165, 137);
+    --peach2: #C1856D;
     --cream: rgb(241, 234, 230);
     --brown: #4d3c3c;
     --soft-pink: #ffb3a0;
@@ -19,9 +19,9 @@
   }
 
   :root {
---peach: rgb(251, 230, 223);
---peach2: rgb(242, 165, 137);
-}
+    --peach: #FBE6DF;
+    --peach2: #C1856D;}
+  
 
 .blob {
 position: fixed;
@@ -111,7 +111,7 @@ animation: float 12s infinite ease-in-out;
   .logo {
     font-family: "Sacramento", cursive;
     font-size: 36px;
-    background: linear-gradient(45deg,rgb(215, 57, 25), #ffb19c);
+    background: linear-gradient(45deg,#C1856D, #ffb19c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -124,7 +124,7 @@ animation: float 12s infinite ease-in-out;
     border-radius: 20px;
     transition: 0.3s;
   }
-  .nav-links a:hover { background:hsl(9, 83.70%, 71.20%); }
+  .nav-links a:hover { background:#C1856D; }
 
   .hamburger {
     display: none;
@@ -174,7 +174,7 @@ animation: float 12s infinite ease-in-out;
     }
   }
     .nav-links a.active {
-border-bottom: 2px solid hsl(9, 83.7%, 71.2%);
+border-bottom: 2px solid #C1856D;
 font-weight: 600;
 }
 
@@ -217,7 +217,7 @@ gap: 1vw; /* previously 2vw */
   .hero-content span {
     font-family: "Sacramento", cursive;
     font-size: clamp(60px, 13vw, 90px);
-    color: rgb(225, 106, 82);
+    color: #C1856D;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -239,7 +239,7 @@ gap: 1vw; /* previously 2vw */
   .hero-content p {
     max-width: 900px;
     font-size: clamp(18px, 4vw, 22px);
-    color: #6b5555;
+    color: black;
     margin-top: 30px;
     line-height: 2;
   }
@@ -300,7 +300,7 @@ text-align: center; /* centre text for home page */
   .about-minimal h2, .projects-minimal h2, .contact-title {
     font-family: "Sacramento", cursive;
     font-size: clamp(56px, 10vw, 80px);
-    color: rgb(231, 63, 30);
+    color: #aa674ef1;
     margin-bottom: 50px;
   }
 
@@ -308,7 +308,7 @@ text-align: center; /* centre text for home page */
   .about-content {
     background: rgba(250, 250, 250, 0.94);
     backdrop-filter: blur(26px);
-    border: 1.8px solid rgba(230, 103, 29, 0.6);
+    border: 1.8px solid #C1853C;
     border-radius: 100px;
     padding: 50px;
     max-width: 900px;
@@ -317,7 +317,7 @@ text-align: center; /* centre text for home page */
   }
   .lead { font-size: clamp(18px,5vw,20px); color: var(--brown); margin-bottom: 20px; }
   .soft-highlight {
-    background: linear-gradient(120deg,#ff8d75,#ffb19c);
+    background: linear-gradient(120deg,#C1856D,#ffb19c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
@@ -381,7 +381,7 @@ text-align: center; /* centre text for home page */
 /* Back with gradient name */
 .skill-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #ff8d75, #ffb19c);
+  background: linear-gradient(135deg, #C14600, #ffb19c);
   color: white;
   font-weight: 700;
   font-size: 16px; /* Slightly bigger text */
@@ -392,7 +392,7 @@ text-align: center; /* centre text for home page */
   .skills-minimal span {
     width: 70px; height: 70px;
     background: rgba(252, 137, 114, 0.15);
-    color: rgb(233, 132, 112);
+    color: #aa674ef1;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -401,7 +401,7 @@ text-align: center; /* centre text for home page */
     transition: all 0.4s ease;
   }
   .skills-minimal span:hover {
-    background: rgb(234, 136, 116);
+    background:#aa674ef1;
     color: rgb(247, 244, 244);
     transform: translateY(-12px) scale(1.25);
     box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
@@ -434,7 +434,7 @@ transition: all 0.6s ease;
     padding: 20px;
     border-radius: 38px;
     background: rgba(255, 255, 255, 0.97);
-    border: 2.3px solid rgba(237, 146, 107, 0.7);
+    border: 2.3px solid rgba(179, 64, 15, 0.7);
     box-shadow: 0 10px 35px rgba(255, 145, 120, 0.22);
     left: 50%;
     top: 50%;
@@ -464,14 +464,14 @@ transition: all 0.6s ease;
 .project-deck.split .project-card:hover {
 transform: scale(1.05); /* slight zoom */
 z-index: 60;            /* bring card to front */
-border: 2.8px solid rgba(237, 146, 107, 0.9); /* highlight border */
+border: 2.8px solid #9e593ef1; /* highlight border */
 transition: all 0.3s ease;
 }
 
   .card-content h3 { font-size: 20px; color: #4d3c3c; margin-bottom: 45px; font-weight: 600; }
   .card-content p { font-size: 15px; color: #5a4545; line-height: 1.8; margin-bottom: 60px; }
-  .tech { font-size: 13px; background: linear-gradient(135deg, #ff8d75, #ffb19c); color: white; padding: 6px 14px; border-radius: 20px; align-self: flex-start; font-weight: 600; }
-  .view-btn { align-self: flex-start; background: linear-gradient(135deg, #ff8d75, #ffb19c); color: white; padding: 12px 26px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
+  .tech { font-size: 13px; background: linear-gradient(135deg, #c2624f, #ffb19c); color: white; padding: 6px 14px; border-radius: 20px; align-self: flex-start; font-weight: 600; }
+  .view-btn { align-self: flex-start; background: linear-gradient(135deg, #ba5a47, #da9f8f); color: white; padding: 12px 26px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
   .view-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35); }
 
   .single-teddy {
@@ -490,7 +490,7 @@ transition: all 0.3s ease;
     margin-top: 10px;
     font-size: 16px;
     font-weight: 600;
-    color: #e68873;
+    color: #b74f38;
     opacity: 0.85;
     animation: hintFloat 2.5s infinite ease-in-out;
     letter-spacing: 0.5px;
@@ -515,16 +515,16 @@ transition: all 0.3s ease;
   .contact-icons { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
   .contact-orb {
     width: 70px; height: 70px; border-radius: 50%;
-    background: linear-gradient(135deg, #ff8c78, #ffb3a0);
+    background: linear-gradient(135deg,#C1856D, #e3866e);
     background-size: 200% 200%;
     animation: orbColors 4s ease infinite;
     backdrop-filter: blur(22px);
     border: 3px solid rgba(230, 110, 80, 0.4);
     display: flex; align-items: center; justify-content: center;
-    font-size: 40px; color: #ff7c6b; text-decoration: none; transition: all 0.4s ease;
+    font-size: 40px; color: #aa674ef1; text-decoration: none; transition: all 0.4s ease;
   }
   .contact-orb:hover { transform: translateY(-12px) scale(1.12); box-shadow: 0 25px 50px rgba(255, 150, 130, 0.45); }
-  .contact-orb:hover i { color: rgb(255, 111, 88); }
+  .contact-orb:hover i { color:#aa674ef1; }
   @keyframes orbColors { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
   /* Background Name */
@@ -534,7 +534,7 @@ transition: all 0.3s ease;
     transform: translate(-50%, -50%) rotate(-10deg);
     font-size: clamp(90px, 10vw, 140px);
     font-weight: 900;
-    color: rgba(227, 137, 109, 0.97);
+    color:#9e553af1;
     opacity: 0.11;
     pointer-events: none;
     z-index: 0;
