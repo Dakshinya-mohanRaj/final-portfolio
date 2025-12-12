@@ -1,27 +1,28 @@
- 
-  :root {
-    --peach: rgb(251, 230, 223);
-    --peach2: #C1856D;
-    --cream: rgb(241, 234, 230);
-    --brown: #4d3c3c;
-    --soft-pink: #ffb3a0;
-    --sparkle: #ffe6dc;
-  }
-  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  *:focus { outline: none; }
-  html, body, #root {
-    overflow-x: hidden;
-    background: var(--peach);
-    font-family: "Poppins", sans-serif;
-    scroll-behavior: smooth;
-    width: 100%;
-    min-height: 100vh;
-  }
 
-  :root {
-    --peach: #FBE6DF;
-    --peach2: #C1856D;}
-  
+:root {
+  --peach: rgb(251, 230, 223);
+  --peach2:#BA704F;
+  --cream: rgb(241, 234, 230);
+  --brown: #4d3c3c;
+  --soft-pink: #e9b4a7;
+  --sparkle: #ffe6dc;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+*:focus { outline: none; }
+html, body, #root {
+  overflow-x: hidden;
+  background: var(--peach);
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  width: 100%;
+  min-height: 100vh;
+}
+
+:root {
+--peach: rgb(251, 230, 223);
+--peach2: #faad8a;
+}
+
 
 .blob {
 position: fixed;
@@ -111,7 +112,7 @@ animation: float 12s infinite ease-in-out;
   .logo {
     font-family: "Sacramento", cursive;
     font-size: 36px;
-    background: linear-gradient(45deg,#C1856D, #ffb19c);
+    background: linear-gradient(45deg,#BA704F, #ffb19c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -156,7 +157,7 @@ animation: float 12s infinite ease-in-out;
       top: 64px;
       right: 5%;
       width: 220px;
-      background: rgba(251, 206, 183, 0.95);
+      background: rgba(238, 215, 204, 0.95);
       backdrop-filter: blur(12px);
       border-radius: 14px;
       flex-direction: column;
@@ -217,7 +218,7 @@ gap: 1vw; /* previously 2vw */
   .hero-content span {
     font-family: "Sacramento", cursive;
     font-size: clamp(60px, 13vw, 90px);
-    color: #C1856D;
+    color: #BA704F;;
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -300,7 +301,7 @@ text-align: center; /* centre text for home page */
   .about-minimal h2, .projects-minimal h2, .contact-title {
     font-family: "Sacramento", cursive;
     font-size: clamp(56px, 10vw, 80px);
-    color: #aa674ef1;
+    color: #BA704F;;
     margin-bottom: 50px;
   }
 
@@ -308,7 +309,7 @@ text-align: center; /* centre text for home page */
   .about-content {
     background: rgba(250, 250, 250, 0.94);
     backdrop-filter: blur(26px);
-    border: 1.8px solid #C1853C;
+    border: 1.8px solid #a75033;
     border-radius: 100px;
     padding: 50px;
     max-width: 900px;
@@ -317,7 +318,7 @@ text-align: center; /* centre text for home page */
   }
   .lead { font-size: clamp(18px,5vw,20px); color: var(--brown); margin-bottom: 20px; }
   .soft-highlight {
-    background: linear-gradient(120deg,#C1856D,#ffb19c);
+    background: linear-gradient(120deg,#c1846c,#ffb19c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
@@ -330,10 +331,9 @@ text-align: center; /* centre text for home page */
   gap: 28px; 
   margin-top: 40px; 
   padding-top: 30px;
-  border-top: 1.5px solid rgba(255,145,120,0.3);
+  border-top: 1.5px solid rgba(184, 98, 78, 0.3);
 }
 
-/* Skill Card Wrapper */
 /* Skill Card Wrapper */
 .skill-card {
   width: 90px; 
@@ -381,7 +381,7 @@ text-align: center; /* centre text for home page */
 /* Back with gradient name */
 .skill-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #C14600, #ffb19c);
+  background: linear-gradient(135deg, #BA704F, #ffb19c);
   color: white;
   font-weight: 700;
   font-size: 16px; /* Slightly bigger text */
@@ -392,7 +392,7 @@ text-align: center; /* centre text for home page */
   .skills-minimal span {
     width: 70px; height: 70px;
     background: rgba(252, 137, 114, 0.15);
-    color: #aa674ef1;
+    color: #6D2932;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -464,13 +464,13 @@ transition: all 0.6s ease;
 .project-deck.split .project-card:hover {
 transform: scale(1.05); /* slight zoom */
 z-index: 60;            /* bring card to front */
-border: 2.8px solid #9e593ef1; /* highlight border */
+border: 2.8px solid #9f5f46f1; /* highlight border */
 transition: all 0.3s ease;
 }
 
   .card-content h3 { font-size: 20px; color: #4d3c3c; margin-bottom: 45px; font-weight: 600; }
   .card-content p { font-size: 15px; color: #5a4545; line-height: 1.8; margin-bottom: 60px; }
-  .tech { font-size: 13px; background: linear-gradient(135deg, #c2624f, #ffb19c); color: white; padding: 6px 14px; border-radius: 20px; align-self: flex-start; font-weight: 600; }
+  .tech { font-size: 13px; background: linear-gradient(135deg, #a85b4c, #f5c4b6); color: white; padding: 6px 14px; border-radius: 20px; align-self: flex-start; font-weight: 600; }
   .view-btn { align-self: flex-start; background: linear-gradient(135deg, #ba5a47, #da9f8f); color: white; padding: 12px 26px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s ease; }
   .view-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 107, 107, 0.35); }
 
@@ -479,9 +479,9 @@ transition: all 0.3s ease;
     height: 100px;
     object-fit: contain;
     cursor: pointer;
-    animation: teddy-bounce 2s infinite ease-in-out;
-    transition: transform 0.3s ease;
-    margin-top: 20px;
+    animation: teddy-bounce 5s infinite ease-in-out;
+    transition: transform 0.5s ease;
+    margin-top: 10px;
   }
   .single-teddy:hover { transform: scale(1.4) rotate(15deg); }
   @keyframes teddy-bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
@@ -490,8 +490,8 @@ transition: all 0.3s ease;
     margin-top: 10px;
     font-size: 16px;
     font-weight: 600;
-    color: #b74f38;
-    opacity: 0.85;
+    color: #bd6732;
+    opacity:0.85;
     animation: hintFloat 2.5s infinite ease-in-out;
     letter-spacing: 0.5px;
     user-select: none;
@@ -508,20 +508,20 @@ transition: all 0.3s ease;
     max-width: 700px;
     width: 100%;
     text-align: center;
-    border: 2px solid rgba(255, 130, 100, 0.35);
+    border: 2px solid rgba(193, 88, 61, 0.875);
     box-shadow: 0 20px 60px rgba(255, 125, 100, 0.25);
   }
   .contact-sub { font-size: 20px; color: #5a3b3b; margin-bottom: 40px; }
   .contact-icons { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
   .contact-orb {
     width: 70px; height: 70px; border-radius: 50%;
-    background: linear-gradient(135deg,#C1856D, #e3866e);
+    background: linear-gradient(135deg,#D29F80, #e3866e);
     background-size: 200% 200%;
     animation: orbColors 4s ease infinite;
     backdrop-filter: blur(22px);
-    border: 3px solid rgba(230, 110, 80, 0.4);
+    border: 3px solid rgba(165, 72, 15, 0.4);
     display: flex; align-items: center; justify-content: center;
-    font-size: 40px; color: #aa674ef1; text-decoration: none; transition: all 0.4s ease;
+    font-size: 40px; color: #a8674ff1; text-decoration: none; transition: all 0.4s ease;
   }
   .contact-orb:hover { transform: translateY(-12px) scale(1.12); box-shadow: 0 25px 50px rgba(255, 150, 130, 0.45); }
   .contact-orb:hover i { color:#aa674ef1; }
@@ -534,7 +534,7 @@ transition: all 0.3s ease;
     transform: translate(-50%, -50%) rotate(-10deg);
     font-size: clamp(90px, 10vw, 140px);
     font-weight: 900;
-    color:#9e553af1;
+    color:#52270180;
     opacity: 0.11;
     pointer-events: none;
     z-index: 0;
@@ -577,5 +577,13 @@ transition: all 0.3s ease;
     color: white;
     margin: 0;
     font-family: sans-serif;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;   /* stops horizontal scrolling */
+    background: var(--cream); /* your main bg color */
   }
   
