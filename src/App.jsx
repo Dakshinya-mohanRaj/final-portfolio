@@ -142,7 +142,7 @@ export default function App() {
         <div className="hero-wrapper">
           <div className="hero-content">
             <h1>Hello, I'm</h1>
-            <h1 className="cursive">
+            <h1 className="logo cursive">
             <span>Dakshinya</span>
             </h1>
 
