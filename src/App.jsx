@@ -25,22 +25,29 @@ export default function App() {
   };
 
   useEffect(() => {
-    const sectionIds = ["home", "about", "projects", "contact"];
-
-    const handleScroll = () => {
-      let current = "home";
-      sectionIds.forEach((id) => {
-        const sec = document.getElementById(id);
-        if (!sec) return;
-        const rect = sec.getBoundingClientRect();
-        if (rect.top <= 150 && rect.bottom >= 150) current = id;
-      });
-      setActiveSection(current);
+    const sections = document.querySelectorAll("section");
+  
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        threshold: 0.6, // 🔥 60% visible → active
+      }
+    );
+  
+    sections.forEach((section) => observer.observe(section));
+  
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
 
   const handleTeddyClick = () => setIsSplit((prev) => !prev);
 
@@ -78,7 +85,8 @@ export default function App() {
 
       {/* NAVBAR */}
       <nav className="navbar">
-        <div className="logo">Dakshinya</div>
+      <div className="logo cursive">Dakshinya</div>
+
 
         <button
           className={`hamburger ${menuOpen ? "open" : ""}`}
@@ -134,11 +142,18 @@ export default function App() {
         <div className="hero-wrapper">
           <div className="hero-content">
             <h1>Hello, I'm</h1>
-            <h1>
-              <span>Dakshinya</span>
+            <h1 className="cursive">
+            <span>Dakshinya</span>
             </h1>
+
             <p>Aesthetic Frontend Developer crafting smooth, pastel experiences, creating calm and clean interfaces that feel soft and effortlessly modern.</p>
-          </div>
+            <ul className="hero-bullets">
+  <li>I enjoy transforming ideas into visually balanced layouts.</li>
+  <li>Focused on user-centric design and smooth interactions.</li>
+  <li>Comfortable bridging design and development with clean code.</li>
+  <li>Always learning, refining, and improving with thoughtful feedback.</li>
+</ul>
+</div>
           <div className="hero-img">
             <img src={DaksheeImg} alt="Dakshinya" />
           </div>
@@ -148,7 +163,7 @@ export default function App() {
       {/* ABOUT */}
       <section id="about" className="section">
         <div className="about-minimal">
-          <h2>About Me</h2>
+          <h2 className="contact-title cursive">About Me</h2>
 
           <div className="about-content">
             <p className="lead">I’m a passionate B.E. CSE student specializing in frontend development, dedicated to crafting clean, modern, and visually immersive user experiences.</p>
@@ -285,9 +300,15 @@ export default function App() {
           <p className="contact-sub">I'm always open to collaboration & opportunities</p>
 
           <div className="contact-icons">
-            <a href="mailto:dakshee02@gmail.com" className="contact-orb">
-              <i className="fas fa-envelope"></i>
-            </a>
+          <a
+  href="https://mail.google.com/mail/?view=cm&fs=1&to=dakshee02@gmail.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="contact-orb"
+>
+  <i className="fas fa-envelope"></i>
+</a>
+
             <a
               href="https://github.com/Dakshinya-mohanRaj"
               target="_blank"
