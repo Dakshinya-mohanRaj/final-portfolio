@@ -2,7 +2,7 @@
   color-scheme: light;
 
   --peach: rgb(251, 230, 223);
-  --peach2: #cc8260; /* keep your updated value */
+  --peach2: #bd7a63e9; /* keep your updated value */
   --cream: rgb(241, 234, 230);
   --brown: #3b2c2c;
   --soft-pink: #e9b4a7;
@@ -647,14 +647,7 @@ transition: all 0.3s ease;
     .hero-wrapper { flex-direction: column-reverse; text-align: center; }
     .hero-content { text-align: center; }
   }
-  /* ===============================
-   ELEGANT OVER-SCROLL CONTROL
-   =============================== */
-@media (pointer: fine) {
-  body {
-    overscroll-behavior-y: contain;
-  }
-}
+
   /* Link safety */
   .view-btn, .view-btn:link, .view-btn:visited,
   .view-btn:hover, .view-btn:active, .view-btn:focus {
