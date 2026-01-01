@@ -450,18 +450,18 @@ text-align: center; /* centre text for home page */
   border: 2px solid rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 12px rgba(204, 62, 88, 0.15);
-  color: #e98470;
+  color: #d4703f;
 }
 
 /* Back with gradient name */
 .skill-back {
   transform: rotateY(180deg);
-  background: linear-gradient(135deg, #BA704F, #ffb19c);
+  background: linear-gradient(135deg, #bd8368, #e38d75);
   color: white;
   font-weight: 700;
   font-size: 16px; /* Slightly bigger text */
   text-align: center;
-  box-shadow: 0 8px 20px rgba(234, 136, 116, 0.4);
+  box-shadow: 0 8px 20px rgba(215, 125, 107, 0.4);
 }
 
   .skills-minimal span {
@@ -476,7 +476,7 @@ text-align: center; /* centre text for home page */
     transition: all 0.4s ease;
   }
   .skills-minimal span:hover {
-    background:#aa674ef1;
+    background:#d09580f1;
     color: rgb(247, 244, 244);
     transform: translateY(-12px) scale(1.25);
     box-shadow: 0 20px 40px rgba(220, 20, 20, 0.43);
